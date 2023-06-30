@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <link rel='stylesheet' href="{{ url_for('static', filename='/css/base.css') }}">
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link rel='logoicon.png' sizes='76x76' href="{{ url_for('static', filename='/images/logoicon.png') }}">
+    <link rel='shortcut icon' href="{{ url_for('static', filename='/images/logoicon.png') }}" type='image/x-icon'>
+    <link href='https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap' rel='stylesheet'>
+
+    {% assets "asset_css" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}"/>
+    {% endassets %}
+    
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+
+    {% block body %}
+
+    {% endblock %}
+</body>
+</html>
