@@ -12,6 +12,6 @@ and then run the app with
 
 or 
 
-```py.app.py```
+```py app.py```
 
 and that's it!
