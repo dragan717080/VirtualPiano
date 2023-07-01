@@ -1,17 +1,8 @@
-This is boilerplate code for Flask, SQLAlchemy and SCSS.
+Virtual Piano website. It uses
 
-Simply do 
-
-```pip install -r requirements.txt```
-
-to install all the dependencies
-
-and then run the app with
-
-```python3 app.py```
-
-or 
-
-```py app.py```
-
-and that's it!
+<ul>
+    <li>Flask</li>
+    <li>SQLAlchemy</li>
+    <li>Sass</li>
+    <li>Jinja2</li>
+</ul>

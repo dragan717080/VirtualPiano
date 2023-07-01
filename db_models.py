@@ -1,5 +1,6 @@
 from datetime import datetime
 from config.config import db
+from flask_login import UserMixin
 
 class BaseModel(db.Model):
     __abstract__ = True
@@ -36,3 +37,39 @@ class BaseModel(db.Model):
     def __repr__(self):
         return f'{self.__class__.__name__} {self.id}'
     
+class User(BaseModel, UserMixin):
+    __bind_key__ = __tablename__ = 'users'
+    email = db.Column(db.String(100), nullable=False, unique=True)
+    username = db.Column(db.String(100), nullable=False, unique=True)
+    password = db.Column(db.String(100), nullable=False)
+    is_teaching = db.Column(db.Boolean, default=False)
+    is_admin = db.Column(db.Boolean, default=False)
+    excluded_keys = BaseModel.excluded_keys + ['password']
+
+    avatar = db.relationship('Avatar', backref='user', uselist=False)
+    music_sheets = db.relationship('MusicSheet', backref='user')
+    comments = db.relationship('Comment', backref='user')
+
+"""     @staticmethod
+    def find_all():
+        return super.find_all(User) """
+
+class Avatar(BaseModel):
+    __bind_key__ = 'avatars'
+    img_link = db.Column(db.String(100), nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+class MusicSheet(BaseModel):
+    __bind_key__ = 'music_sheets'
+    title = db.Column(db.String(100), nullable=False, unique=True)
+    content = db.Column(db.Text, nullable=False)
+    genre = db.Column(db.String(100))
+
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+class Comment(BaseModel):
+    __bind_key__ = 'comments'
+    content = db.Column(db.Text, nullable=False)
+
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))

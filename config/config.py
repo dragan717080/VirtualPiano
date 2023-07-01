@@ -7,11 +7,11 @@ db = SQLAlchemy()
 def set_config(app_dict, env):
 
     BASE_DB = 'sqlite:///database/'
-    tables = ['books', 'quotes', 'blogs', 'movies']
+    tables = ['users', 'avatars', 'music_sheets', 'comments']
     #setting app.config
     config_dict = {
         'SECRET_KEY': 'secretkey1',
-        'SQLALCHEMY_DATABASE_URI': f'{BASE_DB}books.db',
+        'SQLALCHEMY_DATABASE_URI': f'{BASE_DB}users.db',
         'SQLALCHEMY_TRACK_MODIFICATIONS': False,
         'SQLALCHEMY_BINDS': {table: f'{BASE_DB}{table}.db' for table in tables},
         'TEMPLATES_AUTO_RELOAD': True,

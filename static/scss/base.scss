@@ -1,4 +1,290 @@
-h1 {
-  color: orangered;
-  font-size: 400%;
+@import 'includes';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Spartan', sans-serif;
+  position: relative;
+}
+
+.header-menu {
+  background-color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  @include row-v;
+  border-bottom: 2px solid $darkorange;
+
+  img {
+    @include rect(79px, 128px);
+  }
+}
+
+.header-menu__item {
+  min-width: fit-content;
+  color: #fff;
+  margin-inline: 10px;
+  display: flex;
+}
+
+.header-menu__item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.active,
+.active a {
+  color: $darkorange;
+}
+
+.header__register-login {
+  padding: 10px;
+  color: $darkorange;
+  border: 2px solid $darkorange;
+
+  a {
+    color: $darkorange;
+    text-decoration: none;
+  }
+}
+
+.music_link {
+  @include link;
+}
+
+.header-username__avatar img {
+  @include square(40px);
+  margin-right: 14px;
+  border-radius: 50%;
+}
+
+#header__admin {
+  color: red;
+}
+
+.footer {
+  min-height: 180px;
+  color: #fff;
+  background-image: linear-gradient(to bottom, rgba(17, 13, 34, 1), rgba(76, 62, 145, 0.71));
+  @include row;
+
+  .footer_logo img {
+    @include rect(120px, 300px);
+    margin-top: -24px;
+  }
+
+  .footer-item {
+    margin: 10px 40px;
+
+    .footer-item__title {
+      margin-bottom: 14px;
+      font-weight: 700;
+      font-size: 17px;
+      color: $darkorange;
+    }
+
+    .footer-item__content__item {
+      color: #fff;
+      margin: 10px 0;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
+    .footer-item__content__socials {
+      display: flex;
+
+      img {
+        @include square(24px);
+        margin-inline: 14px;
+      }
+    }
+  }
+
+  #footer-item___account {
+    margin-top: 19px;
+    margin-left: 4px;
+  }
+}
+
+.footer-item__register {
+  display: flex;
+
+  img {
+    margin-left: -14px;
+    margin-right: 4px;
+    @include square(24px);
+  }
+
+  a {
+    @include link;
+  }
+
+  .footer-item__register_content {
+    margin-left: 4px;
+    margin-top: 4px;
+  }
+}
+
+.logout {
+  margin-left: 24px;
+  padding-top: 1px;
+  color: red;
+}
+
+.header-username {
+  margin-left: 54%;
+  @include row-v;
+  color: #fff;
+
+  a {
+    @include link;
+  }
+}
+
+.update_genres {
+  min-height: 694px;
+  text-align: center;
+}
+
+.sort_genres {
+  min-height: 694px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.sort_genres_sheet_title {
+  margin: 18px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.upload_link {
+  color: $darkorange;
+  text-decoration: none;
+}
+
+.autoplay_loaded_sheet_button {
+  height: 38px;
+  width: 190px;
+  margin-top: 4%;
+  margin-left: 45%;
+  background-color: #000;
+  color: $darkorange;
+  border: 1px solid $darkorange;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.load_sheet_button {
+  height: 38px;
+  width: 190px;
+  margin-top: 40px;
+  background-color: #000;
+  color: $darkorange;
+  border: 1px solid $darkorange;
+  cursor: pointer;
+}
+
+.compose_message_button {
+  height: 38px;
+  width: 190px;
+  margin-top: 40px;
+  margin-left: 17%;
+  background-color: #000;
+  color: $darkorange;
+  border: 1px solid $darkorange;
+  cursor: pointer;
+}
+
+.sort_genre_button {
+  height: 38px;
+  width: 190px;
+  background-color: #000;
+  color: $darkorange;
+  border: 1px solid $darkorange;
+  cursor: pointer;
+}
+
+.input__wrapper {
+  height: 33px;
+  border: 2px solid #555;
+  border-radius: 10px;
+  margin-bottom: 17px;
+  padding-left: 15px;
+  display: flex;
+
+  img {
+    @include square(23px);
+    margin-left: 7px;
+    padding-top: 4px;
+  }
+
+  input, 
+  input:focus {
+    width: 199px;
+    padding-left: 10px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+  }
+}
+
+.submit-btn {
+  @include rect(40px, 260px);
+  margin: 4px 0 19px 22px;
+  background-color: #000;
+  color: $darkorange;
+  border: 2px solid $darkorange;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 20px;
+  text-shadow: 0 0 15px #ff8300;
+  padding: 9px 16px 7px;
+  line-height: 20px;
+  min-height: auto;
+  min-width: 150px;
+  max-width: 260px;
+  text-align: center;
+  font-family: Spartan;
+  letter-spacing: .8px;
+  cursor: pointer;
+  transition: .25s;
+  font-family: 'Spartan', sans-serif;
+}
+
+@media only screen and (max-width: 1500px) {
+  .piano-menu-top {
+    width: calc(71% + 19px);
+    margin-left: 15%;
+  }
+
+  .header-username {
+    margin-left: 49%;
+  }
+
+  .quote {
+    margin-left: calc(43% + 3px);
+  }
+
+  .autoplay_loaded_sheet_button {
+    margin-left: calc(43% + 10px);
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, lightgray, darkgray);
+  outline: 1px solid slategrey;
 }

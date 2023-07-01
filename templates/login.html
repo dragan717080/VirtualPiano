@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% assets 'login_css' %}
+<link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
+{% endassets %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block body %}
+<div class='login__wrapper'>
+    <div class='login'>
+        <div class='login__header'>
+            <img src="{{ url_for('static', filename = '/images/virtual-piano-keyboard-logo-white.png') }}">
+        </div>
+        <form action='/login/' method='POST'>
+            <div id='inputs'>
+                <div class='input__wrapper'>
+                    <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
+                    <input type='text' name='username_1' placeholder='Username'>
+                </div>
+                <div class='input__wrapper'>
+                    <img src="{{ url_for('static', filename = '/images/password-icon.jpg') }}">
+                    <input type='password' name='password_1' placeholder='Password'>
+                </div>
+            </div>
+            <div class='handlepotentialerrors'>
+                {% if handle %}
+                {% if handle == 1 %}
+                Username must exist
+                {% endif %}
+                {% if handle == 2 %}
+                Password didn't match
+                {% endif %}
+                {% endif %}
+            </div>
+            <input class='submit-btn changetodoonhover' type='submit' value='LOGIN' name='submit'>
+        </form>
+        <div class='login-additional'>
+            <div class='recovery'>
+                Forgot your password?
+            </div>
+            <div class='register-link'>
+                <a href='/register'>Register</a>
+            </div>
+            <div class='conditions'>
+                Terms and Conditions
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

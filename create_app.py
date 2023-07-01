@@ -1,7 +1,8 @@
 from flask import Flask
+from flask_cors import CORS, cross_origin
+from flask_login import LoginManager
 from config.config import *
 from db_models import *
-from flask_assets import Environment, Bundle
 
 def create_app():
     app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -14,5 +15,15 @@ def create_app():
     app.app_context().push()
     SESSION_TYPE = 'sqlalchemy'
     app.config.from_object(__name__)
+
+    cors = CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
+
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     return app

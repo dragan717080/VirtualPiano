@@ -1,11 +1,228 @@
 {% extends 'base.html' %}
 
 {% block head %}
-{% assets "index_css" %}
-<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}"/>
+{% assets 'index_css' %}
+<link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
 {% endassets %}
+<script>
+    var keyboardNotes = {{ keyboard_notes| tojson }}
+    var keyboardSounds = {{ keyboard_sounds| tojson }}
+</script>
 {% endblock %}
 
 {% block body %}
 
+<div class='piano-bg'>
+    <div class='piano' id='piano'>
+        <div class='piano-menu-top'>
+            <div class='piano-menu-top__title'>
+                Play the piano
+            </div>
+            <div class='piano-menu-top__content'>
+                Use your computer keyboard to play your chosen song
+            </div>
+            <div class='piano-menu-top__content_keys'>
+                <div class='piano-menu-top__content_keys_most_recent_key'>
+                    <div class='piano-menu-top__content_keys_most_recent_key_top'></div>
+                    <div class='piano-menu-top__content_keys_most_recent_key_bottom'></div>
+                </div>
+                <div class='piano-menu-top__content_keys_all_keys'></div>
+            </div>
+        </div>
+        <div class='piano-menu__bottom'>
+            {% set menu_items = {
+            'record': 'Record',
+            'key-assist': 'Key Assist',
+            'metronome': 'Metronome',
+            'sound': 'Sound'
+            } %}
+            {% for k,v in menu_items.items() %}
+            <div class='piano-menu__bottom_item'>
+                <div class='piano-menu__bottom_item_img'>
+                    <img class='menu_item_img'
+                        src="{{ url_for('static', filename='/images/virtual-piano-' + k + '.jpg') }}">
+                </div>
+                <div class='piano-menu__bottom_item_title'>
+                    {{ v }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class='piano-start__wrapper'>
+            <div class='piano-start'>
+                {% for key in keys %}
+                <div class='key_{{ key.type }}'>
+                    <div class='key_{{ key.type }}_value'>
+                        {% if key.label %}
+                        <label class='label1'>
+                            {{ key.label }}
+                        </label>
+                        {% else %}
+                        {{ key.value }}
+                        {% endif %}
+                    </div>
+                    <div class='key_{{ key.type }}_bottom'></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if loaded_sheet %}
+<div class='loaded_sheet_wrapper'>
+    <div class='loaded_sheet'>
+        <div class='loaded_sheet_title'>
+            {{ loaded_sheet.title.split('.')[0] }}
+        </div>
+
+        <div class='loaded_sheet_content'>
+
+        </div>
+    </div>
+</div>
+<div class='autoplay_loaded_sheet'>
+    <button class='autoplay_loaded_sheet_button'>
+        Autoplay loaded sheet
+    </button>
+</div>
+{% endif %}
+
+<div class='piano_hints' id='piano_hints'>
+    <div class='piano_hint'>
+        <div class='piano_hint_img'>
+            <img class='piano_hint_image' src="{{ url_for('static', filename = '/images/virtual-piano-hint-1.png') }}">
+        </div>
+        <div class='piano_hint_content'>
+            1. <span class='span1'> Select </span> a song in the Virtual Piano <span class='span1'> Search box </span>
+            or by browsing the <span class='span1'> Music Sheets. </span>
+        </div>
+    </div>
+    <div class='piano_hint'>
+        <div class='piano_hint_img'>
+            <img class='piano_hint_image' src="{{ url_for('static', filename = '/images/virtual-piano-hint-2.png') }}">
+        </div>
+        <div class='piano_hint_content'>
+            2. <span class='span1'> Letters </span> in the music sheets refer to the <span class='span1'> keys </span>
+            on your computer keyboard.
+        </div>
+    </div>
+    <div class='piano_hint'>
+        <div class='piano_hint_img'>
+            <img class='piano_hint_image' src="{{ url_for('static', filename = '/images/virtual-piano-hint-3.png') }}">
+        </div>
+        <div class='piano_hint_content'>
+            3. Press the <span class='span1'> highlighted keys </span> on your <span class='span1'> computer keyboard
+            </span> to play the song.
+        </div>
+    </div>
+</div>
+
+<div class='piano-info__wrapper'>
+    <div class='piano_most_active_users'>
+        <div class='piano_most_active_users_title'>
+            Most active users
+        </div>
+        <div class='piano_most_active_users_content'>
+            {% for user in most_active_users %}
+            <div class='most_active_user'>
+                <div class='most_active_user_info'>
+                    <div class='most_active_user_info_img'>
+                        {% if user.avatar %}
+                        <img src="{{ url_for('static', filename = '/uploads/images/' + user.avatar ) }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
+                        {% endif %}
+                    </div>
+                    <div class='most_active_user_info_username'>
+                        {{ user.username }}
+                    </div>
+                </div>
+                <div class='most_active_user_info_1'>
+                    Sheets: {{ user.sheets }} <br>
+                    Comments: {{ user.comments }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id='piano-info'>
+        <div id='piano-info__title'>
+            VIRTUAL PIANO
+        </div>
+        <div id='piano-info__subtitle'>
+            Virtual Piano enables you to play the piano on your computer keyboard, mobile, and tablet.
+        </div>
+        <div id='piano-info__content'>
+            <div class='piano-info__content__column'>
+                <div class='piano-info__content__title'>
+                    QUICK. EASY. ENJOYABLE.
+                </div>
+                <div class='piano-info__content__subtitle'>
+                    Learn to <span class='span2'> play the piano instantly </span> on Virtual Piano. Become an online
+                    pianist and <span class='span2'> create your own extraordinary music! </span>
+                </div>
+                <div class='piano-info__content__value'>
+                    The platform enables you to play the piano instantly on your computer keyboard, mobile, and tablet.
+                    This online tool helps you learn to play a variety of virtual music instruments, become an online
+                    pianist and create your own extraordinary music!
+                    VirtualPiano.net is the original online piano platform, played by more than 19 million people a
+                    year. It is free to use by anyone, anywhere, anytime.
+                    But there’s more. Way more, when you join.
+                </div>
+            </div>
+            <div class='piano-info__content__column'>
+                Those who wish to experience the full range of the platform’s powerful features have the option of 
+                <span class='span3'> becoming a member. </span> You don’t need to download or install anything. However,
+                <span class='span3'> Virtual Piano offers a Web App </span> for all mobile & tablet devices as an
+                option.
+                The best part is that you don’t even need to know how to read music notation. VirtualPiano.net’s music
+                sheets use the plain English alphabet and simple semantics, so you can enjoy the experience of playing
+                the piano in less than a minute.
+
+                Oh, and the music sheets are free too! Thousands of them. So, go find and play a song that moves you.
+                Learn it, teach it and share it. Make a positive impact on the world around you. Amplify your
+                imagination, creativity and a new love for music. Begin today.
+            </div>
+        </div>
+    </div>
+    <div class='latest-users'>
+        <div class='latest-users__title'>
+            Latest users
+        </div>
+        <div class='latest-users__content'>
+            {% for user in latest_users %}
+            <div class='latest-user'>
+                {% if user.avatar %}
+                <img src="{{ url_for('static', filename = '/uploads/images/' + user.avatar.img_link ) }}">
+                {% else %}
+                <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
+                {% endif %}
+                <div id='username'>
+                    {{ user.username }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class='piano-quote__wrapper'>
+    <div class='piano-quote'>
+        <div class='piano-quote__content'>
+            Where words leave off, music begins.
+        </div>
+        <div class='piano-quote__author'>
+            Heinrich Heine
+        </div>
+        <div class='piano-quote__profession'>
+            POET
+        </div>
+        <div class='quote'>
+            QUOTE
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript' src="{{ url_for('static', filename='/js/index.js') }}"></script>
 {% endblock %}
