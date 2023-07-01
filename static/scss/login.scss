@@ -1,0 +1,63 @@
+@import '../scss/includes';
+
+.login__wrapper {
+    height: 89vh;
+    min-height: 700px;
+    @include row;
+    background-color: #fff;
+    background-image: linear-gradient(#000, lightgray);
+
+    .login {
+        @include rect(458px, 300px);
+        background: #fff;
+        border: 2px solid $darkorange;
+        border-radius: 10px;
+
+        a {
+            color: $darkorange;
+            text-decoration: none;
+        }
+
+        .login__header {
+            font-size: 18px;
+            color: $darkorange;
+            line-height: 18px;
+            text-align: center;
+            padding-top: 12px;
+            padding-bottom: -14px;
+            border-bottom: 2px solid $darkorange;
+
+            img {
+                @include rect(107px, 268px);
+            }
+        }
+
+        #inputs {
+            margin: 14px;
+            font-size: 14px;
+            line-height: 1.42857143;
+        }
+
+        .handlepotentialerrors {
+            height: 42px;
+            color: red;
+            text-align: center;
+        }
+
+        .login-additional {
+            margin-top: 4px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.42857143;
+
+            div {
+                margin: 14px;
+            }
+
+            .register-link,
+            .conditions {
+                margin-top: -7px;
+            }
+        }
+    }
+}

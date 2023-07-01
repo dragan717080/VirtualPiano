@@ -1,0 +1,36 @@
+@mixin row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin row-h {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin row-v {
+    display: flex;
+    align-items: center;
+}
+
+@mixin link {
+    color: inherit;
+    text-decoration: none;
+}
+
+@mixin square($value) {
+    height: $value;
+    width: $value;
+}
+
+@mixin rect($value-h, $value-w) {
+    height: $value-h;
+    width: $value-w;
+}
+
+@mixin border-bottom-radius($value) {
+    border-bottom-left-radius: $value;
+    border-bottom-right-radius: $value;
+}
+
