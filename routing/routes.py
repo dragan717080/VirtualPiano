@@ -10,8 +10,6 @@ index_pages = Blueprint('index', __name__, url_prefix='/')
 @index_pages.route('/')
 @cross_origin()
 def index():
-    latest_users = User.query.order_by(User.created_at).all()
-    latest_users.reverse()
     data = read_json_file('data/keys.json')
     keys, keyboard_notes, keyboard_sounds = data['keys'], data['notes'], data['sounds']
     loaded_music_sheet = request.args.get('loaded_sheet')
@@ -22,17 +20,17 @@ def index():
         'keyboard_notes': keyboard_notes,
         'keyboard_sounds': keyboard_sounds,
         'keys': keys,
-        'most_active_users': [],
-        'latest_users': latest_users
+        'most_active_users': User.get_most_active(),
+        'latest_users': User.get_latest()
     }
     if current_user.is_anonymous:
         return render_template('index.html', **params)
     user_params = {
-        'loggedinuser': current_user.username,
-
-        'latest_users': latest_users
+        'loggedinuser': current_user.username
     }
     params.update(user_params)
     print(current_user.avatar.image)
-    print(current_user.avatar.image_format)
+    for user in User.get_most_active():
+        if (user['avatar']):
+            print(user['avatar'])
     return render_template('index.html', **params)

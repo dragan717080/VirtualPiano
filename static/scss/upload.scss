@@ -1,0 +1,15 @@
+@import '../scss/includes';
+
+.upload__wrapper {
+    min-height:694px;
+    @include row;
+
+    #upload-music__content {
+        margin-left: 57px;
+    }
+
+    .submit-btn__wrapper {
+        padding-top:40px;
+        padding-left:70px;
+    }
+}

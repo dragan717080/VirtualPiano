@@ -22,12 +22,14 @@ def configure_assets(app):
     register_css = create_bundle('register')
     profile_css = create_bundle('profile')
     login_css = create_bundle('login')
+    upload_css = create_bundle('upload')
 
     assets.register('asset_css', css)
     assets.register('index_css', index_css)
     assets.register('register_css', register_css)
     assets.register('profile_css', profile_css)
     assets.register('login_css', login_css)
+    assets.register('upload_css', upload_css)
 
     css.build()
     index_css.build()

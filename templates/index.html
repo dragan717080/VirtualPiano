@@ -129,7 +129,7 @@
                 <div class='most_active_user_info'>
                     <div class='most_active_user_info_img'>
                         {% if user.avatar %}
-                        <img src="data:image/{{ user.avatar.image_format }};base64,{{ user.avatar.image }}">
+                        <img src="data:image/{{ user.avatar_format }};base64,{{ user.avatar|b64encode }}">
                         {% else %}
                         <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
                         {% endif %}

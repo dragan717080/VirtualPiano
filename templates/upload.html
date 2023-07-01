@@ -7,28 +7,26 @@
 {% block head %}
 
 <title>Upload</title>
-<link rel="stylesheet" href="{{ url_for('static', filename = '/css/upload.css') }}">
+<link rel='stylesheet' href="{{ url_for('static', filename = '/css/upload.css') }}">
 
 {% endblock %}
 
 {% block body %}
 
-<div class="upload_wrapper">
-    <div class="upload">
-        <form enctype="multipart/form-data" method="POST">
-            <div class="upload_music">
-                <div class="upload_music_content">
-                    <label for="UPLOAD_MUSIC">Choose a music txt file:</label>
-                    <input type="file" id="UPLOAD_MUSIC" name="UPLOAD_MUSIC" accept=".txt">
-                </div>
+<div class='upload__wrapper'>
+    <form enctype='multipart/form-data' method='POST'>
+        <div id='upload-music'>
+            <div id='upload-music__content'>
+                <label for='upload-music'>Choose a music txt file:</label>
+                <input type='file' id='upload-music' name='upload-music' accept='.txt'>
             </div>
-            <div class="upload_music_1">
-                <button name="submit" value="UPLOAD_MUSIC" class="button_profile_pic_1" type="submit">
-                    UPLOAD MUSIC
-                </button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class='submit-btn__wrapper'>
+            <button name='submit' value='upload-music' class='submit-btn' type='submit'>
+                UPLOAD MUSIC
+            </button>
+        </div>
+    </form>
 </div>
 
 {% endblock %}
