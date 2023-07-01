@@ -3,6 +3,7 @@ from flask_cors import CORS, cross_origin
 from flask_login import LoginManager
 from config.config import *
 from db_models import *
+from base64 import b64encode
 
 def create_app():
     app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -25,5 +26,10 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+    
+    #for blobs
+    @app.template_filter('b64encode')
+    def base64_encode(value):
+        return b64encode(value).decode('utf-8')
 
     return app

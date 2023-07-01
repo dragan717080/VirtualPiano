@@ -3,6 +3,7 @@ from flask_login import current_user
 from flask_cors import cross_origin
 from helpers import read_json_file
 from db_models import MusicSheet, User
+import base64
 
 index_pages = Blueprint('index', __name__, url_prefix='/')
 
@@ -28,9 +29,10 @@ def index():
         return render_template('index.html', **params)
     user_params = {
         'loggedinuser': current_user.username,
-        'avatar': current_user.avatar.img_link,
+
         'latest_users': latest_users
     }
     params.update(user_params)
-    print(params['avatar'])
+    print(current_user.avatar.image)
+    print(current_user.avatar.image_format)
     return render_template('index.html', **params)

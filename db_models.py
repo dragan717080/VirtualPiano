@@ -56,7 +56,8 @@ class User(BaseModel, UserMixin):
 
 class Avatar(BaseModel):
     __bind_key__ = 'avatars'
-    img_link = db.Column(db.String(100), nullable=False)
+    image = db.Column(db.LargeBinary, nullable=False)
+    image_format = db.Column(db.String(10), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
