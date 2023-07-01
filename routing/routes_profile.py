@@ -10,24 +10,21 @@ profile_pages = Blueprint('profile', __name__, url_prefix = '/')
 @profile_pages.route('/profile', methods=['POST'])
 def profile_post():
     upload_path = read_json_file('data/keys.json')['upload_path']
-    #user has no avatar yet
+    profile_picture = request.files['profile_picture']
+    filename = profile_picture.filename
+    img_path = os.path.join(upload_path, filename)
+
     if request.form['submit'] == 'GET_AVATAR': 
-        profile_picture = request.files['profile_picture']
-        img_path = os.path.join(os.getcwd(), upload_path, profile_picture.filename)
         profile_picture.save(img_path)
-        current_user.avatar.img_link = profile_picture.filename
+        current_user.avatar.img_link = filename
         current_user.save()
-        return redirect(request.url)
-    #user has avatar
+        return redirect('/')
     else:
-        profile_picture = request.files['profile_picture']
-        if profile_picture.filename != '':
-            profile_picture.save(os.path.join(upload_path, profile_picture.filename))
-            current_user.avatar.img_link = profile_picture.filename
+        if filename != '':
+            profile_picture.save(img_path)
+            current_user.avatar.img_link = filename
             current_user.save()
-        else:
-            return redirect(request.url)
-        return redirect(request.url)
+        return redirect('/')
 
 @profile_pages.route('/profile')
 def profile():
@@ -38,7 +35,6 @@ def profile():
         'is_admin': current_user.is_admin,
         'music_sheets': current_user.music_sheets,
         'inbox_messages': [],
-        'avatar': current_user.avatar.img_link
+        'avatar': current_user.avatar.img_link,
     }
-    print(current_user.avatar.img_link)
     return render_template('profile.html', **params)
