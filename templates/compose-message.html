@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 
+{% assets 'sheets_css' %}
+<link rel='stylesheet' type='text/css' href='{{ ASSET_URL }}' />
+{% endassets %}
+
 {% block head %}
 
 <title>Compose Message</title>
-<link rel = "stylesheet" href = "{{ url_for('static', filename = '/css/music_sheets.css') }}">
 
 {% endblock %}
 
 {% block body %}
 
-<div class = "compose_message_wrapper">
+<div class = "compose-message_wrapper">
     <form method = "POST">
-        <div class = "compose_message">
-            <div class = "compose_message_input">
-                Recipient: <input name = "compose_message" value = "{{ recipient }}">
+        <div class = "compose-message">
+            <div class = "compose-message_input">
+                Recipient: <input name = "compose-message" value = "{{ recipient }}">
             </div>
-            <div class = "compose_message_textarea">
+            <div class = "compose-message_textarea">
                 <textarea name = "message_content"></textarea>
             </div>
             {% for error in errors %}
@@ -23,7 +26,7 @@
                 {{ error }}
             </div>
             {% endfor %}
-            <button name = 'submit' class = "compose_message_button" value = "COMPOSE_MESSAGE" type = "submit">
+            <button name = 'submit' class = "compose-message_button" value = "compose-message" type = "submit">
                 COMPOSE MESSAGE
             </button>
         </div>

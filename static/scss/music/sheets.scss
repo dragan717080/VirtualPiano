@@ -1,0 +1,418 @@
+@import '../../scss/includes';
+
+#music-sheets__wrapper {
+    padding: 4%;
+    color: #fff;
+    text-align: center;
+    background-position: center 27.7969px;
+    background-image: url(https://virtualpiano.net/wp-content/uploads/2021/06/Virtual-Piano-Music-Sheets-Library-bright-800px.png);
+    background-size: cover;
+    margin-bottom: 14px;
+    font-weight: bold;
+    font-size: 35px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    #music-sheets__info {
+        .music-sheets__title {
+            color: $darkorange;
+            margin-bottom: 1rem;
+        }
+    
+        .music-sheets__subtitle {
+            margin-bottom: 14px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+    
+        p {
+            margin-bottom: 18px;
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 28px;
+            letter-spacing: 1.6px; 
+        }
+
+        .find-categories {
+            background: rgba(32, 39, 47, 0.3);
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            color: $darkorange;
+
+            .find-categories__title {
+                padding: 18px 0 12px 0;
+                letter-spacing: 1px;
+                line-height: 1.4;
+                font-size: 19px;
+                font-weight: 300;
+                font-family: 'Playfair Display', serif;
+                font-style: italic;
+            }
+
+            .find-categories__subtitle {
+                font-size: 30px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                line-height: 1.4;
+            }
+        }
+
+        #discover {
+            .discover__title {
+                padding: 18px 10px 12px 12px;
+                letter-spacing: 1px;
+                line-height: 1.4;
+                font-size: 19px;
+                font-weight: 700;
+                font-family: 'Playfair Display', serif;
+                font-style: italic;
+                color: #d0c6d8;
+                letter-spacing: 1.6px;
+            }
+
+            .discover__genres {
+                margin-top: 4%;
+            
+                .discover__genre {
+                    display: flex;
+                    width: fit-content;
+            
+                    .discover__title {
+                        padding: 18px 10px 12px;
+                        letter-spacing: 1px;
+                        line-height: 1.4;
+                        font-size: 19px;
+                        font-weight: 700;
+                        font-family: 'Playfair Display', serif;
+                        font-style: italic;
+                        color: #d0c6d8;
+                        font-weight: 700;
+                        font-size: 13px;
+                        line-height: 28px;
+                        letter-spacing: 1.6px;
+                    }
+            
+                    .genre-items {
+                        display: grid;
+                        grid-template-columns: repeat(4, 1fr);
+            
+                        .genre-item {
+                            margin-bottom: 17px;
+                            margin-inline: 10px;
+                            width: 140px;
+            
+                            .genre-name {
+                                text-transform: uppercase;
+                                margin-top: 10px;
+                                font-size: 11px;
+                                font-weight: 700;
+                                text-align: center;
+                            }
+
+                            .genre_image {
+                                max-width: 120px;
+                                overflow: hidden;
+                                margin-left: 10px;
+                            
+                                img {
+                                    @include rect(90px, 120px);
+                                    transition: transform 0.4s ease;
+                                    transform-origin: 50% 50%;
+                                }
+                            
+                                img:hover {
+                                    transform: scale(1.2);
+                                }
+                            }
+                        }
+                    }
+            
+                    a {
+                        @include link;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.handlepotentialerrors {
+    height: 19px;
+    @include error;
+}
+
+.compose-message_textarea {
+    margin-top: 12px;
+    margin-bottom: 14px;
+    display: grid;
+}
+
+.music-sheets__content_wrapper {
+    text-align: center;
+}
+
+.music-sheets__lists {
+    min-height: 400px;
+}
+
+.request-overview {
+    text-align: center;
+    background: #ededf2;
+
+    .request-overview__title {
+        padding-top: 14px;
+        font-style: italic;
+        font-size: 16px;
+        font-weight: 300;
+    }
+    
+    .request-overview__content {
+        margin-bottom: 30px;
+        font-size: 30px;
+        letter-spacing: 1px;
+        padding: 18px 10px 12px;
+    }
+}
+
+.request {
+    padding-top: 40px;
+    @include row-h;
+
+    img {
+        @include square(40px);
+    }
+}
+
+.request__music-sheet {
+    margin-right: 70px;
+}
+
+.request__music-sheets__title,
+.request__artists_title,
+.music-sheets__request_title,
+.music-sheets__submit-title {
+
+    font-style: italic;
+    margin-top: 7px;
+    margin-bottom: 43px;
+
+}
+
+.music-sheets__row {
+    margin-bottom: 10px;
+    @include row;
+}
+
+.edit_genres {
+    min-height: 614px;
+    padding-top: 80px;
+}
+
+.edit_sheet_content {
+    margin-left: 30%;
+}
+
+.edit_sheet_textarea {
+
+    min-height: 120px;
+    min-width: 740px;
+
+}
+
+.artists_element_button {
+    width: 33px;
+    margin-inline: 4px;
+    padding: 7px;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.music-sheets__element_button {
+    width: 33px;
+    margin-inline: 4px;
+    padding: 7px;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.music-sheets__request_content_1 {
+
+    margin-bottom: 17px;
+    @include row-v;
+
+    img {
+        @include square(40px);
+        margin-right: 14px;
+    }
+
+}
+
+.button_profile_pic_1,
+.edit_sheet_button {
+    @include rect(38px, 190px);
+    background-color: #000;
+    color: $darkorange;
+    border: 1px solid $darkorange;
+    cursor: pointer;
+}
+
+.compose-message_wrapper {
+    min-height: 701px;
+    @include row;
+}
+
+.music-sheets__comment {
+    text-align: left;
+    @include row;
+}
+
+.music-sheets__comments {
+    margin-bottom: 40px;
+
+    img {
+        @include square(40px);
+    }
+
+}
+
+.music-sheets__comments_title {
+    margin: 40px 0;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.music-sheets__request {
+    margin-left: 14%;
+    margin-right: 7%;
+}
+
+.music-sheets__comment {
+
+    width: fit-content;
+    margin-top: 14px;
+    margin-bottom: 14px;
+
+}
+
+.music-sheets__comment_content {
+
+    margin-inline: 10px;
+
+}
+
+.music-sheets__comment_content_username {
+
+    color: #385898;
+    font-weight: bold;
+
+}
+
+.music-sheets__submit {
+
+    width: 40%;
+
+}
+
+.music-sheets__submit-content_title {
+    margin: 40px 0;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.sheets_by_artist_links {
+
+    margin-top: 10px;
+    margin-bottom: 14px;
+    color: $darkorange;
+    text-decoration: none;
+
+}
+
+.music-sheets__upload {
+    margin: 40px 0;
+    color: $darkorange;
+
+    a {
+        @include link;
+    }
+}
+
+.music-sheets__upload_1 {
+
+    font-weight: bold;
+
+}
+
+.update_genres {
+    min-height: 474px;
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+
+.update_genres_select {
+    margin-bottom: 40px;
+}
+
+.genre {
+    min-height: 654px;
+    text-align: center;
+}
+
+.genre_title {
+    margin-top: 40px 0;
+    font-size: 17px;
+}
+
+.music_sheet_sheet {
+
+    min-height: 594px;
+    text-align: center;
+
+    textarea {
+        @include rect(171px, 400px);
+    }
+
+}
+
+.music_sheet_sheet_title {
+    margin-top: 100px;
+    margin-bottom: 70px;
+}
+
+.music_sheet_sheet_author {
+    padding-bottom: 43px;
+}
+
+.music_sheet_for_genre {
+    margin-bottom: 40px;
+}
+
+.music_sheet_for_genre_title {
+
+    color: $darkorange;
+
+    a {
+        @include link;
+    }
+
+}
+
+.latest_music_title {
+
+    margin-top: 14px;
+    margin-bottom: 14px;
+    font-size: 17px;
+    font-weight: bold;
+
+}
+
+.artists_link,
+.music-sheets__link
+{
+    @include link;
+}

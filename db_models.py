@@ -1,7 +1,6 @@
 from datetime import datetime
 from config.config import db
 from flask_login import UserMixin
-from sqlalchemy import func
 
 class BaseModel(db.Model):
     __abstract__ = True
@@ -13,24 +12,24 @@ class BaseModel(db.Model):
     def remove_excluded_keys(item):
         return {var: value for var, value in vars(item).items() if var not in BaseModel.excluded_keys}
 
-    @staticmethod
+    @classmethod
     def find_all(cls):
         return [cls.remove_excluded_keys(item) for item in cls.query.all()]
 
-    @staticmethod
-    def find_by_id(cls, id):
-        return cls.query.filter(cls.id == id).first()
+    @classmethod
+    def find(cls, **kwargs):
+        return cls.query.filter_by(**kwargs).first()
 
     def save(self):
         db.session.add(self)
         db.session.commit()
 
-    @staticmethod
+    @classmethod
     def delete_one(cls, **kwargs):
         cls.query.filter_by(**kwargs).delete()
         db.session.commit()
 
-    @staticmethod
+    @classmethod
     def delete_all(cls):
         db.session.query(cls).delete()
         db.session.commit()
@@ -41,10 +40,24 @@ class BaseModel(db.Model):
         list1 = query.order_by(cls.created_at).all()
         list1.reverse()
         return list1 if limit is not None else list1[:limit]
+    
+    @classmethod
+    def to_dict(cls, self):
+        return {k: v for k, v in vars(self).items() if k not in self.excluded_keys}
 
     def __repr__(self):
         return f'{self.__class__.__name__} {self.id}'
     
+class Message(BaseModel):
+    __bind_key__ = __tablename__ = 'messages'
+    content = db.Column(db.Text, nullable=False)
+
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    author = db.relationship('User', foreign_keys=[author_id])
+    recipient = db.relationship('User', foreign_keys=[recipient_id])
+
 class User(BaseModel, UserMixin):
     __bind_key__ = __tablename__ = 'users'
     email = db.Column(db.String(100), nullable=False, unique=True)
@@ -57,11 +70,13 @@ class User(BaseModel, UserMixin):
     avatar = db.relationship('Avatar', backref='user', uselist=False)
     music_sheets = db.relationship('MusicSheet', backref='user')
     comments = db.relationship('Comment', backref='user')
+    # Message has two foreign keys of same model
+    #messages = db.relationship('Message', primaryjoin="or_(User.id == Message.author_id, User.id == Message.recipient_id)", backref='user')
 
     @staticmethod
     def get_latest(limit=None):
         return BaseModel.get_latest(User, limit)
-    
+
     @staticmethod
     def get_most_active(limit=None):
         users = [{
@@ -89,6 +104,11 @@ class MusicSheet(BaseModel):
     genre = db.Column(db.String(100))
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    @staticmethod
+    def get_latest(limit=None):
+        return BaseModel.get_latest(MusicSheet, limit)
+    
 
 class Comment(BaseModel):
     __bind_key__ = 'comments'

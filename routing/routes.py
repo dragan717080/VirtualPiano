@@ -2,8 +2,7 @@ from flask import render_template, Blueprint, request
 from flask_login import current_user
 from flask_cors import cross_origin
 from helpers import read_json_file
-from db_models import MusicSheet, User
-import base64
+from db_models import MusicSheet, User, Message
 
 index_pages = Blueprint('index', __name__, url_prefix='/')
 
@@ -21,16 +20,15 @@ def index():
         'keyboard_sounds': keyboard_sounds,
         'keys': keys,
         'most_active_users': User.get_most_active(),
-        'latest_users': User.get_latest()
+        'latest_users': User.get_latest(),
+        'loaded_sheet': loaded_sheet
     }
     if current_user.is_anonymous:
         return render_template('index.html', **params)
     user_params = {
-        'loggedinuser': current_user.username
+        'loggedinuser': current_user.username,
+        'avatar': current_user.avatar.image if current_user.avatar is not None else None,
+        'avatar_format': current_user.avatar.image_format if current_user.avatar is not None else None
     }
     params.update(user_params)
-    print(current_user.avatar.image)
-    for user in User.get_most_active():
-        if (user['avatar']):
-            print(user['avatar'])
     return render_template('index.html', **params)

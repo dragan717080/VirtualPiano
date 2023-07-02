@@ -1,0 +1,158 @@
+@import '../scss/includes';
+
+#inbox {
+    min-height:662px;
+    padding-top:40px;
+    @include row;
+
+    a {
+        @include orange-link;
+    }
+}
+
+.inbox_compose-message_button {
+    min-width: 190px;
+
+    button {
+        margin-right: 34px;
+    }
+}
+
+.reply_message_button {
+    margin: 40px 0;
+    padding:10px;
+    background-color: #000;
+    color: $darkorange;
+}
+
+.inbox_overview {
+    width:31%;
+    margin-top:80px;
+}
+
+.inbox-message {
+
+    width:fit-content;
+    padding:10px;
+    display:flex;
+
+    img {
+        @include square(45px);
+        margin-top:14px;
+        margin-right:14px;
+    }
+}
+
+.inbox-message__overview {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.inbox-message__msg_content {
+
+    margin-top:4px;
+    font-weight:bold;
+    cursor:pointer;
+
+}
+
+.inbox-message__content-title {
+
+    font-size: 24px;
+    font-weight: bold;
+    margin-top:4px;
+    margin-bottom:40px;
+    text-align:center;
+
+}
+
+.inbox-message__content-value {
+
+    text-align:center;
+    line-height: 1.5;
+
+}
+
+.inbox-message__avatar {
+
+    margin-left: 10px;
+    margin-top: -7px;
+
+}
+
+.inbox-message__msg {
+
+    min-width: 280px;
+    cursor:pointer;
+
+}
+
+.inbox-message__sender {
+
+    margin-top:8px;
+    font-weight:bold;
+
+}
+
+ .received__sender_email, .received__receiver-email {
+    margin-left:14px;
+    padding-top:8px;
+}
+
+.inbox-message__time {
+    padding-top:12px;
+    text-align:right;
+}
+
+.inbox-message__content-wrapper {
+    width:40%;
+}
+
+.received {
+    margin-top: 137px;
+    display:none;
+}
+
+.received__sender {
+    padding:10px;
+    background-color:#f3f4f6;
+    display:flex;
+}
+
+.received__receiver {
+    padding:10px;
+    background-color:#f3f4f6;
+    display:flex;
+}
+
+.received__receiver img, .received__sender img {
+    @include square(40px);
+}
+
+.received__content_wrapper {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.received__content {
+    width:100%;
+    margin:14px;
+}
+
+.received__content_header {
+    margin-top:12px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.received__content_header_datetime {
+    text-align:right;
+}
+
+.received__content_content {
+    margin-top:59px;
+    padding-left:14px;
+}

@@ -1,0 +1,56 @@
+{
+    "genres": [
+        {
+            "name": "Pop",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/11/Your-Song-%E2%80%93-Elton-John-Online-Pianist-Virtual-Piano.jpg"
+        },
+        {
+            "name": "Rock",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Rock-Music-Piano-Songs-Virtual-Piano-300x300.jpg"
+        },
+        {
+            "name": "Dance",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Electronic-Dance-Music-Piano-Sheets-Virtual-PIano-300x300.jpg"
+        },
+        {
+            "name": "Classical",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Classical-Piano-Music-Virtual-Piano-300x300.jpg"
+        }
+    ],
+    "themes": [
+        {
+            "name": "Songs from TV",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Piano-Songs-From-TV-Shows-Virtual-Piano-300x300.jpg"
+        },
+        {
+            "name": "Christmas Songs",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Best-Christmas-Songs-Piano-Music-Virtual-Piano-300x300.jpg"
+        },
+        {
+            "name": "Songs from Movies",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Grace_Kelly30419.jpg"
+        },
+        {
+            "name": "Songs from Games",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Games-Piano-Music-Virtual-Piano-300x300.jpg"
+        }
+    ],
+    "artists": [
+        {
+            "name": "Ludwig van Beethoven",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/08/Ludwig-van-Beethoven-Artist-Online-Piano-Keyboard-Virtual-Piano-150x150.jpg"
+        },
+        {
+            "name": "Hans Zimmer",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/06/Hans-Zimmer-Top-Artist-on-Virtual-Piano-Play-Piano-Online-150x150.jpg"
+        },
+        {
+            "name": "Ludovico Einaudi",
+            "image": "https://images.universal-music.de/img/assets/506/506129/992/720/ludovico-einaudi.jpg"
+        },
+        {
+            "name": "Wolfgang Amadeus Mozart",
+            "image": "https://virtualpiano.net/wp-content/uploads/2020/07/Wolfgang-Amadeus-Mozart-Classical-Music-Composer-Virtual-Piano-150x150.jpg"
+        }
+    ]
+}

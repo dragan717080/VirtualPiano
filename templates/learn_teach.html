@@ -4,7 +4,7 @@
 
 <title>Learn/Teach</title>
 <link rel = "stylesheet" href = "static/css/learn_teach.css">
-<link rel = "stylesheet" href = "static/css/music_sheets.css">
+<link rel = "stylesheet" href = "static/css/music-sheet.css">
 
 {% endblock %}
 
@@ -35,7 +35,7 @@
             </div>
             {% if loggedinuser %}
             <div class = "learn_teach_requests_message">
-                <a href = "/compose_message?recipient={{ user.username }}">
+                <a href = "/compose-message?recipient={{ user.username }}">
                     Message
                 </a>
             </div>

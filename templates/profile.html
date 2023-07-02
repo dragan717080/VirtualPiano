@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% assets 'profile_css' %}
-<link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
+<link rel='stylesheet' type='text/css' href='{{ ASSET_URL }}' />
 {% endassets %}
 
 {% block head %}
@@ -11,18 +11,18 @@
 {% block body1 %}
 
 {% if loggedinuser %}
-<div class="checkifloggeduser">
-    <div class="checkifloggeduser1">
+<div class='checkifloggeduser'>
+    <div class='checkifloggeduser1'>
         {% if isadmin %}
-        <span class="logged_in_name_admin">
+        <span class='logged_in_name_admin'>
             {{ loggedinuser }}
         </span>
         {% else %}
-        <span class="logged_in_name">
+        <span class='logged_in_name'>
             {{ loggedinuser }}
         </span>
         {% endif %}
-        <a href="/logout">Logout</a>
+        <a href='/logout'>Logout</a>
     </div>
 </div>
 {% endif %}
@@ -31,41 +31,41 @@
 
 {% block body %}
 
-<div class="profile__wrapper">
-    <div class="profile-username">
+<div class='profile__wrapper'>
+    <div class='profile-username'>
         {{ loggedinuser }}
         <br><br>
         Member since {{ profilecreated }}
     </div>
-    <div class="profile__avatar">
+    <div class='profile__avatar'>
         {% if not avatar %}
-        <div class="get_avatar">
+        <div class='get_avatar'>
             Get avatar
         </div>
-        <form enctype="multipart/form-data" method="POST">
-            <label for="profile_picture">Choose a profile picture:</label>
-            <input type="file" id="profile_picture" name="profile_picture" accept="image/png, image/jpeg">
-            <div class="change_profile">
-                <button name="submit" value="GET_AVATAR" class="submit-btn" type="submit">
+        <form enctype='multipart/form-data' method='POST'>
+            <label for='profile_picture'>Choose a profile picture:</label>
+            <input type='file' id='profile_picture' name='profile_picture' accept='image/png, image/jpeg'>
+            <div class='change_profile'>
+                <button name='submit' value='GET_AVATAR' class='submit-btn' type='submit'>
                     Get profile picture
                 </button>
             </div>
         </form>
         {% else %}
-        <div class="profile_avatar_image">
+        <div class='profile_avatar_image'>
             {% if avatar %}
-            <div class="profile_avatar_image_pic">
-                <img src="data:image/{{ avatar_format }};base64,{{ avatar|b64encode }}">
+            <div class='profile_avatar_image_pic'>
+                <img src='data:image/{{ avatar_format }};base64,{{ avatar|b64encode }}'>
             </div>
             {% endif %}
-            <form enctype="multipart/form-data" method="POST">
-                <div class="profile_avatar_image_1">
-                    <label for="profile_picture">Choose a profile picture:</label>
-                    <input type="file" id="change_profile_picture" name="profile_picture"
-                        accept="image/png, image/jpeg">
+            <form enctype='multipart/form-data' method='POST'>
+                <div class='profile_avatar_image_1'>
+                    <label for='profile_picture'>Choose a profile picture:</label>
+                    <input type='file' id='change_profile_picture' name='profile_picture'
+                        accept='image/png, image/jpeg'>
                 </div>
-                <div class="change_profile">
-                    <button name="submit" value="CHANGE_AVATAR" class="submit-btn" type="submit">
+                <div class='change_profile'>
+                    <button name='submit' value='CHANGE_AVATAR' class='submit-btn' type='submit'>
                         Change profile picture
                     </button>
                 </div>
@@ -73,13 +73,13 @@
         </div>
         {% endif %}
     </div>
-    <div class="profile_inbox">
-        You have {{ inbox_messages|length }} messages in inbox. <br><br>
-        <a class="upload_link" href="/inbox">Inbox</a>
+    <div class='profile_inbox'>
+        You have {{ inbox-messages|length }} messages in inbox. <br><br>
+        <a class='upload_link' href='/inbox'>Inbox</a>
     </div>
-    <div class="profile_music">
-        You have submitted {{ music_sheets|length }} music sheets. <br><br>
-        <a class="upload_link" href="/upload">Upload a music sheet now!</a>
+    <div class='profile_music'>
+        You have submitted {{ music_sheet|length }} music sheets. <br><br>
+        <a class='upload_link' href='/upload'>Upload a music sheet now!</a>
     </div>
 </div>
 

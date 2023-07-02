@@ -188,7 +188,7 @@ body {
   cursor: pointer;
 }
 
-.compose_message_button {
+.compose-message_button {
   height: 38px;
   width: 190px;
   margin-top: 40px;
@@ -232,6 +232,12 @@ body {
   }
 }
 
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .submit-btn {
   @include rect(40px, 260px);
   margin: 4px 0 19px 22px;
@@ -255,6 +261,13 @@ body {
   cursor: pointer;
   transition: .25s;
   font-family: 'Spartan', sans-serif;
+}
+
+.submit-btn-alt {
+  margin-bottom: 40px;
+  padding: 10px;
+  background-color: #000;
+  color: $darkorange;
 }
 
 @media only screen and (max-width: 1500px) {

@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Virtual Piano</title>
+{% assets 'sheets_css' %}
+<link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
+{% endassets %}
+
+{% endblock %}
+
+{% block body %}
+
+<div id="music-sheets__wrapper">
+    <div id="music-sheets__info">
+        <div class='music-sheets__title'>
+            MUSIC SHEETS
+        </div>
+        <span class='music-sheets__subtitle'>
+            Discover your favourite songs in the world's largest library of virtual piano music sheets.
+        </span>
+        <p>
+            Select from thousands of free virtual piano music sheets and play them from any device. Choose songs from
+            more than 25 main music sheet categories and 140 music sheet tags. Play the piano in less than a minute
+            using the unique Virtual Piano music sheet notation that anyone can play right away!
+        </p>
+        <div class="find-categories">
+            <div class="find-categories__title">
+                Find Music Sheets By
+            </div>
+            <div class="find-categories__subtitle">
+                Popular Categories
+            </div>
+        </div>
+        <div id="discover">
+            <div class="discover__title">
+                Discover the best songs to play in the world's largest library of verified virtual piano music sheets,
+                updated daily on Virtual Piano.
+            </div>
+            <div class='discover__genres'>
+                <div class='row'>
+                    <div class='discover__genre'>
+                        <div class='discover__title'>
+                            <a href='/music/sheets'>
+                                Genres
+                            </a>
+                        </div>
+                        <div class='genre-items'>
+                            {% for genre in data.genres %}
+                            <div class='genre-item'>
+                                <a class='genre_link' href='/music/genres/{{ genre.name }}'>
+                                    <div class="genre_image">
+                                        <img src="{{ genre.image }}">
+                                    </div>
+                                    <div class='genre-name'>
+                                        {{ genre.name }}
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="discover__genre">
+                        <div class="discover__title">
+                            Themes
+                        </div>
+                        <div class="genre-items">
+                            {% for theme in data.themes %}
+                            <div class="genre-item">
+                                <a class="genre_link" href="/music/genres/{{ theme.name }}">
+                                    <div class="genre_image">
+                                        <img src="{{ theme.image }}">
+                                    </div>
+                                    <div class="genre-name">
+                                        {{ theme.name }}
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="discover__genre">
+                        <div class="discover__title">
+                            Artists
+                        </div>
+                        <div class="genre-items">
+                            {% for artist in data.artists %}
+                            <div class="genre-item">
+                                <a class="genre_link" href="/music/genres/{{ artist.name }}">
+                                    <div class="genre_image">
+                                        <img src="{{ artist.image }}">
+                                    </div>
+                                    <div class="genre-name">
+                                        {{ artist.name }}
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="music-sheets__lists">
+    <div class="music-sheets__lists_browse">
+        <div class="request">
+            <div class="request-overview__title">
+                Browse Music Sheets And Artists Through An Easy <span>A-Z Listing</span>
+            </div>
+        </div>
+        <div class="request">
+            <div class="request__music-sheet">
+                <div class="request__artists_title">
+                    Artists
+                </div>
+                <div class="request__music-sheets__content">
+                    {% set rows = ['ABCDEFGHIJK', 'NOPQRSTUV', 'WXYZ'] %}
+                    {% for row in rows %}
+                    <div class="music-sheets__row">
+                        {% for item in row %}
+                        <button class="artists_element_button">
+                            <a class="artists_link" href="music/sheets">
+                                {{ item }}
+                            </a>
+                        </button>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="request__artists">
+                <div class="request__artists_title">
+                    Music Sheets
+                </div>
+                <div class="request__artists_content">
+                    {% set rows = ['ABCDEFGHIJK', 'NOPQRSTUV', 'WXYZ'] %}
+                    {% for row in rows %}
+                    <div class="music-sheets__row">
+                        {% for item in row %}
+                        <button class="music-sheets__element_button">
+                            <a class="music-sheets__link" href="music/sheets">
+                                {{ item }}
+                            </a>
+                        </button>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="request-overview">
+    <div class="request-overview__title">
+        Song Not In Virtual Piano Library?
+    </div>
+    <div class="request-overview__content">
+        Request / Submit A Music Sheet
+    </div>
+</div>
+
+<div class="request">
+    <div class="music-sheets__request">
+        <div class="music-sheets__request_title">
+            Request a song
+        </div>
+        <div class="music-sheets__request_content">
+            {% if not loggedinuser %}
+            You must be logged in to request a song.
+            {% else %}
+            <form method="POST">
+                <div class="music-sheets__request_content_1">
+                    {% if avatar %}
+                    <img src="data:image/{{ avatar_format }};base64,{{ avatar|b64encode }}">
+                    {% endif %}
+                    <textarea name="song_request">
+                        </textarea>
+                </div>
+                <button name="submit" value="POST SONG REQUEST" class="button_profile_pic_1" type="submit">
+                    POST SONG REQUEST
+                </button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="music-sheets__comments">
+            <div class="music-sheets__comments_title">
+                Latest comments
+            </div>
+            {% for comment in comments %}
+            <div class="music-sheets__comment">
+                <div class="music-sheets__comment_avatar">
+                    {% if comment.user.avatar %}
+                    <img
+                        src="data:image/{{ comment.user.avatar.image_format }};base64,{{ comment.user.avatar.image|b64encode }}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
+                    {% endif %}
+                </div>
+                <div class="music-sheets__comment_content">
+                    <div class="music-sheets__comment_content_username">
+                        {{ comment.author }}
+                    </div>
+                    <div class="music-sheets__comment_content_content">
+                        {{ comment.content }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class='music-sheets__submit'>
+        <div class='music-sheets__submit-title'>
+            Submit a Music Sheet
+        </div>
+        <div class='music-sheets__submit-content'>
+            When you create great music using Virtual Piano, please share it with us. We will feature it in our
+            highlights and share it with our global community of keen listeners.
+            The below button opens a Google Form. You will need to log in to your Google Account to upload your
+            Sound/Video file to our Google Cloud.
+        </div>
+        <div class="music-sheets__submit-content_title">
+            Latest sheets
+        </div>
+        <div class="music-sheets__submit-content_latest_music">
+            {% for sheet in latest_music %}
+            <div class="latest_music_title">
+                <a class="music_link" href="/music/sheets/{{ sheet.id }}">
+                    {{ sheet.title.split(".")[0] }}
+                </a>
+            </div>
+            <div class="latest_music_user">
+                by {{ sheet.author }}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="music-sheets__upload">
+            {% if loggedinuser %}
+            <div class="music-sheets__upload_1">
+                <a href="/upload">
+                    Upload a sheet
+                </a>
+            </div>
+            {% else %}
+            <a href="/login">You must be logged in to upload a music sheet.</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename = '/js/music.js') }}"></script>
+
+{% endblock %}

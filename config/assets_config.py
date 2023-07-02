@@ -14,22 +14,21 @@ def create_bundle(input_file, output_file=None):
 
     return bundle
 
+def configure_music_assets(assets):
+
+    music_sheets_css = create_bundle('music/sheets')
+
+    assets.register('sheets_css', music_sheets_css)
+
 def configure_assets(app):
     assets = Environment(app)
 
-    css = create_bundle('base')
-    index_css = create_bundle('index')
-    register_css = create_bundle('register')
-    profile_css = create_bundle('profile')
-    login_css = create_bundle('login')
-    upload_css = create_bundle('upload')
+    bundle_names = ['base_css', 'index_css', 'register_css', 'profile_css', 
+        'login_css', 'upload_css', 'inbox_css']
+    bundles = {name: create_bundle(name.split('_')[0]) for name in bundle_names}
 
-    assets.register('asset_css', css)
-    assets.register('index_css', index_css)
-    assets.register('register_css', register_css)
-    assets.register('profile_css', profile_css)
-    assets.register('login_css', login_css)
-    assets.register('upload_css', upload_css)
+    for bundle_name, bundle_obj in bundles.items():
+        assets.register(bundle_name, bundle_obj)
+        bundle_obj.build()
 
-    css.build()
-    index_css.build()
+    configure_music_assets(assets)

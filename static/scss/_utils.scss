@@ -19,6 +19,11 @@
     text-decoration: none;
 }
 
+@mixin orange-link {
+    color: $darkorange;
+    text-decoration: none;
+}
+
 @mixin square($value) {
     height: $value;
     width: $value;
@@ -32,5 +37,10 @@
 @mixin border-bottom-radius($value) {
     border-bottom-left-radius: $value;
     border-bottom-right-radius: $value;
+}
+
+@mixin error {
+    color: red;
+    text-align: center;
 }
 

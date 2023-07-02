@@ -8,8 +8,9 @@
     <link rel='logoicon.png' sizes='76x76' href="{{ url_for('static', filename='/images/logoicon.png') }}">
     <link rel='shortcut icon' href="{{ url_for('static', filename='/images/logoicon.png') }}" type='image/x-icon'>
     <link href='https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap' rel='stylesheet'>
-
-    {% assets 'asset_css' %}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    
+    {% assets 'base_css' %}
     <link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
     {% endassets %}
 
@@ -112,7 +113,7 @@
                 Music Sheets
             </div>
             <div class='footer-item__content'>
-                <div class='footer-item__content__item' id='find_music_sheets'>
+                <div class='footer-item__content__item' id='find_music-sheet'>
                     <a href='/music'>Find Music Sheets</a>
                 </div>
                 {% for item in ['A-Z of Music Sheets', 'Latest Music Sheets', 'Request / Submit Songs'] %}

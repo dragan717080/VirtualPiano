@@ -21,8 +21,7 @@
 
         .handlepotentialerrors {
             height: 19px;
-            color: red;
-            text-align: center;
+            @include error;
             display: none;
         }
 
