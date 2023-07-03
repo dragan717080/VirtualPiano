@@ -68,8 +68,8 @@ class User(BaseModel, UserMixin):
     excluded_keys = BaseModel.excluded_keys + ['password']
 
     avatar = db.relationship('Avatar', backref='user', uselist=False)
-    music_sheets = db.relationship('MusicSheet', backref='user')
-    comments = db.relationship('Comment', backref='user')
+    music_sheets = db.relationship('MusicSheet', backref='author')
+    comments = db.relationship('Comment', backref='author')
     # Message has two foreign keys of same model
     #messages = db.relationship('Message', primaryjoin="or_(User.id == Message.author_id, User.id == Message.recipient_id)", backref='user')
 

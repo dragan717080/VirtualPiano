@@ -190,25 +190,25 @@
             </form>
             {% endif %}
         </div>
-        <div class="music-sheets__comments">
-            <div class="music-sheets__comments_title">
+        <div class="comments">
+            <div class="comments-title">
                 Latest comments
             </div>
             {% for comment in comments %}
-            <div class="music-sheets__comment">
-                <div class="music-sheets__comment_avatar">
-                    {% if comment.user.avatar %}
+            <div class="comment">
+                <div class="comment_avatar">
+                    {% if comment.author.avatar %}
                     <img
-                        src="data:image/{{ comment.user.avatar.image_format }};base64,{{ comment.user.avatar.image|b64encode }}">
+                        src="data:image/{{ comment.author.avatar.image_format }};base64,{{ comment.author.avatar.image|b64encode }}">
                     {% else %}
                     <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
                     {% endif %}
                 </div>
-                <div class="music-sheets__comment_content">
-                    <div class="music-sheets__comment_content_username">
-                        {{ comment.author }}
+                <div class="comment-content">
+                    <div class="comment-content_username">
+                        {{ comment.author.username }}
                     </div>
-                    <div class="music-sheets__comment_content_content">
+                    <div class="comment-content_content">
                         {{ comment.content }}
                     </div>
                 </div>

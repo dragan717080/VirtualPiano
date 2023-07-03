@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Blueprint, abort
-from flask_cors import CORS, cross_origin
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
-from config.log_config import logging
-import time
-import os
+from flask_cors import cross_origin
+from flask_login import login_required, current_user
 from db_models import MusicSheet
 
 upload_pages = Blueprint('upload', __name__)

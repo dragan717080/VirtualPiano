@@ -70,19 +70,20 @@
 </div>
 
 {% if loaded_sheet %}
-<div class='loaded_sheet_wrapper'>
-    <div class='loaded_sheet'>
-        <div class='loaded_sheet_title'>
+<div class='loaded-sheet__wrapper'>
+    <div class='loaded-sheet'>
+        <div class='loaded-sheet__title'>
             {{ loaded_sheet.title.split('.')[0] }}
         </div>
-
-        <div class='loaded_sheet_content'>
-
+        <div class="row">
+            <div id='loaded-sheet__content'>
+                {{ loaded_sheet.content }}
+            </div>
         </div>
     </div>
 </div>
-<div class='autoplay_loaded_sheet'>
-    <button class='autoplay_loaded_sheet_button'>
+<div class="row">
+    <button id='autoplay-loaded-sheet-btn' class='submit-btn-alt'>
         Autoplay loaded sheet
     </button>
 </div>

@@ -263,13 +263,33 @@
     }
 }
 
-.music-sheets__comment {
+.comment {
     text-align: left;
     @include row;
 }
 
-.music-sheets__comments {
+.comments {
     margin-bottom: 40px;
+
+    .comments-title {
+        margin: 40px 0;
+        font-size: 19px;
+        font-weight: bold;
+    }
+
+    .comment {
+        margin: 14px 0;
+        width: fit-content;
+
+        .comment-content {
+            margin-inline: 10px;
+
+            .comment-content_username {
+                color: #385898;
+                font-weight: bold;
+            }
+        }
+    }
 
     img {
         @include square(40px);
@@ -277,34 +297,9 @@
 
 }
 
-.music-sheets__comments_title {
-    margin: 40px 0;
-    font-size: 19px;
-    font-weight: bold;
-}
-
 .music-sheets__request {
     margin-left: 14%;
     margin-right: 7%;
-}
-
-.music-sheets__comment {
-
-    width: fit-content;
-    margin-top: 14px;
-    margin-bottom: 14px;
-
-}
-
-.music-sheets__comment_content {
-
-    margin-inline: 10px;
-
-}
-
-.music-sheets__comment_content_username {
-    color: #385898;
-    font-weight: bold;
 }
 
 .music-sheets__submit {

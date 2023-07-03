@@ -320,15 +320,19 @@
     padding-left:7px;
 }
 
-.loaded_sheet_wrapper {
+.loaded-sheet__wrapper {
     min-height:140px;
     @include row;
-}
 
-.loaded_sheet_title {
-    margin-top: 70px;
-    margin-bottom: 73px;
-    text-align:center;
+    .loaded-sheet__title {
+        margin-top: 70px;
+        margin-bottom: 73px;
+        text-align:center;
+    }
+
+    #loaded-sheet__content {
+        max-width: 70%;
+    }
 }
 
 .latest-users {
@@ -346,6 +350,10 @@
         padding-top:10px;
         padding-left:7px;
     }
+}
+
+#autoplay-loaded-sheet-btn {
+    @include margin-y(40px, 0);
 }
 
 @media only screen and (max-width: 1500px) {
