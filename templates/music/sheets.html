@@ -135,7 +135,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="request__artists">
+            <div>
                 <div class="sheets-subtitle">
                     Music Sheets
                 </div>
@@ -181,8 +181,7 @@
                     {% if avatar %}
                     <img src="data:image/{{ avatar_format }};base64,{{ avatar|b64encode }}">
                     {% endif %}
-                    <textarea name="song_request">
-                        </textarea>
+                    <textarea name="song_request"></textarea>
                 </div>
                 <button name="submit" value="POST SONG REQUEST" class="button_profile_pic_1" type="submit">
                     POST SONG REQUEST
@@ -205,7 +204,7 @@
                     {% endif %}
                 </div>
                 <div class="comment-content">
-                    <div class="comment-content_username">
+                    <div class="comment-content__username">
                         {{ comment.author.username }}
                     </div>
                     <div class="comment-content_content">

@@ -15,7 +15,7 @@ def upload_post():
             uploaded_sheet_title = uploaded_sheet.filename
             if uploaded_sheet_title != '':
                 sheet_params = {
-                    'title': uploaded_sheet_title,
+                    'title': uploaded_sheet_title.split('.txt')[0],
                     'content': uploaded_sheet.read().decode('utf-8'),
                     'author_id': current_user.id
                 }

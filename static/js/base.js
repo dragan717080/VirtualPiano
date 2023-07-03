@@ -21,10 +21,10 @@ function toggleStyles(element, backgroundColor, color) {
 }
 
 const linkSocials = document.getElementsByClassName('link_socials');
-linkSocials[0].style.marginLeft = '0px';
-const imgOriginalSources = [];
-const imgOriginalNames = [];
-const imgOriginalExtensions = [];
+linkSocials[0].style.marginLeft = '0';
+var imgOriginalSources = [];
+var imgOriginalNames = [];
+var imgOriginalExtensions = [];
 
 Array.from(linkSocials).forEach((link, i) => {
     const src = link.getAttribute('src');

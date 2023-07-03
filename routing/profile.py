@@ -1,5 +1,4 @@
 from flask import  render_template, request, redirect, Blueprint
-from flask_cors import cross_origin
 from flask_login import login_required, current_user
 from db_models import User, Avatar, Message
 from helpers import read_json_file, get_inbox_messages

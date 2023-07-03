@@ -9,8 +9,7 @@ music_pages = Blueprint('music', __name__, template_folder='templates/music/', u
 @music_pages.route('/', methods = ['POST'])
 def music_post():
     if request.form['submit'] == 'POST SONG REQUEST':
-        song_request_content = request.form['song_request']
-        song_request = Comment(content = song_request_content, author_id = current_user.id)
+        song_request = Comment(content = request.form['song_request'], author_id = current_user.id)
         song_request.save()
         return redirect(request.url)
 
@@ -82,32 +81,9 @@ def get_sheets():
 
 @music_pages.route('/sheets/<int:id>')
 def get_by_id(id):
-    music_sheet = vars(MusicSheet.query.filter_by(id = id).first())
+    music_sheet = MusicSheet.query.filter_by(id = id).first()
     if current_user.is_anonymous:
         return render_template('music/sheet.html', music_sheet = music_sheet)
     
     return render_template('music/sheet.html', loggedinuser = current_user.username, music_sheet = music_sheet)
 
-@music_pages.route('/sheets/edit/<int:id>', methods = ['GET', 'POST'])
-def edit_sheet(id):
-    sheet = MusicSheet.query.get_or_404(id)
-    if request.method == 'POST':
-        return render_template('music/edit_genres.html', sheet = sheet)
-    return render_template('music/edit_genres.html', sheet = sheet)
-
-@music_pages.route('/sheets/update/<int:id>', methods = ['GET', 'POST'])
-def update_sheet(id):
-    sheet = MusicSheet.query.get_or_404(id)
-    if request.method == 'POST':
-        selected_option = request.form.get('update_genres_select')
-        sheet.genre = selected_option
-        sheet.save()
-        return redirect('/music/sort_genres')
-    return render_template('music/update_genres.html', loggedinuser = current_user.username, admin = current_user.isadmin)
-
-@music_pages.route('/sheets/delete/<int:id>')
-def delete_sheet(id):
-    sheet = MusicSheet.query.get_or_404(id)
-    db.session.delete(sheet)
-    db.session.commit()
-    return redirect('/music/sort_genres')

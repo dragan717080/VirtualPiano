@@ -11,22 +11,24 @@
 
 {% block body %}
 
-<div class='music-sheet__sheet-sheet'>
-    <div class='music-sheet__sheet-title'>
+<div id='sheet'>
+    <div id='sheet-title'>
         {{ music_sheet.title.split('.')[0] }} <br>
         {% if music_sheet.artist %}
         by {{ music_sheet.artist }}
         {% endif %}
     </div>
-    <div class='music-sheet__sheet-content'>
-        <div class='music-sheet__sheet-author'>
-            By {{ music_sheet.author }}
+    <div id='sheet__content'>
+        <div id='sheet__author'>
+            By {{ music_sheet.author.username }}
         </div>
-        <div class='music-sheet__sheet-content_content'>
-            {{ music_sheet.content }}
+        <div class="row">
+            <div id='sheet__content_value'>
+                {{ music_sheet.content }}
+            </div>
         </div>
     </div>
-    <div class='music-sheet__sheet-load'>
+    <div class='sheet__load'>
         <a href="/?loaded-sheet={{ music_sheet.title.split('.')[0] }}">
             <button id='load-sheet-btn' class='submit-btn-alt'>
                 LOAD SHEET INTO PIANO PLAYER

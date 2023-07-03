@@ -13,6 +13,7 @@ document.getElementsByClassName('header-menu__item')[1].classList.add('active');
 
 for (let i = 0; i < artistsElementButton.length; i++) {
     artistsLink[i].setAttribute('href', `/music/artists?letter=${artistsElementButton[i].innerText}`);
+    // To be rewritten using AJAX
     artistsElementButton[i].addEventListener('click', event => {
         console.log('1');
     })
@@ -26,5 +27,5 @@ for (let i = 0; i < musicSheetsElementButton.length; i++) {
 }
 
 for (let i = 0; i < genreLinks.length; i++) {
-    genreLinks[i].href =  `/music/genres/${genreNames[i].innerText}`;
+    genreLinks[i].href = `/music/genres/${genreNames[i].innerText}`;
 }

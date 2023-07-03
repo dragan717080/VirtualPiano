@@ -21,7 +21,7 @@
         {% endif %}
         {% if music-sheet|length > 0 %}
         {% for sheet in music-sheet %}
-            <div class = "music-sheet__sheet-for_genre_title" style = "margin-bottom:14px;">
+            <div class = "sheet__for_genre_title" style = "margin-bottom:14px;">
                 <a href = "/music/sheets/{{ sheet.id }}">
                     {{ sheet.title.split(".")[0] }} <br>
                 </a>

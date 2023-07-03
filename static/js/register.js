@@ -12,21 +12,17 @@ allUsernames = all_users.map((user) => user.username);
 const testEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 function validateRegistration(e) {
-    var correctEmail = testEmail(email.value);
-    var correctUsername = username.value !== '';
-    var correctPasswordsLengths = password1.value.length > 7;
-    var correctPasswordsMatching = password1.value === password2.value;
+    const correctEmail = testEmail(email.value);
+    const correctUsername = username.value !== '';
+    const correctPasswordsLengths = password1.value.length > 7;
+    const correctPasswordsMatching = password1.value === password2.value;
 
-    var registrationSuccessful = correctEmail && correctUsername && correctPasswordsLengths && correctPasswordsMatching;
-    if (registrationSuccessful) return true;
+    const registrationSuccessful = correctEmail && correctUsername && correctPasswordsLengths && correctPasswordsMatching;
+    if (registrationSuccessful) 
+        return true;
     else {
-        if (!correctUsername) {
-            handleUsername.style.display = 'block';
-            handleUsername.innerText = 'Username must exist';
-        } else {
-            handleUsername.style.display = 'none';
-            handleUsername.innerText = 'Username already exists';
-        }
+        handleUsername.style.display = !correctUsername ? 'block' : 'none';
+        handleUsername.innerText = !correctUsername ? 'Username must not be empty' : 'Username already exists'; 
         handleEmail.style.display = !correctEmail ? 'block' : 'none';
         handleShortPassword.style.display = !correctPasswordsLengths ? 'block' : 'none';
         handlePassNoMatch.style.display = !correctPasswordsMatching ? 'block' : 'none';

@@ -29,7 +29,7 @@
                 <div class='piano-menu-top__content_keys_all_keys'></div>
             </div>
         </div>
-        <div class='piano-menu__bottom'>
+        <div class='piano-menu-bottom'>
             {% set menu_items = {
             'record': 'Record',
             'key-assist': 'Key Assist',
@@ -37,12 +37,12 @@
             'sound': 'Sound'
             } %}
             {% for k,v in menu_items.items() %}
-            <div class='piano-menu__bottom_item'>
-                <div class='piano-menu__bottom_item_img'>
+            <div class='piano-menu-bottom_item'>
+                <div class='piano-menu-bottom_item_img'>
                     <img class='menu_item_img'
                         src="{{ url_for('static', filename='/images/virtual-piano-' + k + '.jpg') }}">
                 </div>
-                <div class='piano-menu__bottom_item_title'>
+                <div class='piano-menu-bottom_item_title'>
                     {{ v }}
                 </div>
             </div>
@@ -51,17 +51,18 @@
         <div class='piano-start__wrapper'>
             <div class='piano-start'>
                 {% for key in keys %}
-                <div class='key_{{ key.type }}'>
-                    <div class='key_{{ key.type }}_value'>
+                {% set type = 'white-key' if key.type == '1' else 'black-key' %}
+                <div class='{{ type }}'>
+                    <div class='{{ type }}__value'>
                         {% if key.label %}
-                        <label class='label1'>
+                        <label class='piano-label'>
                             {{ key.label }}
                         </label>
                         {% else %}
                         {{ key.value }}
                         {% endif %}
                     </div>
-                    <div class='key_{{ key.type }}_bottom'></div>
+                    <div class='{{ type }}__bottom'></div>
                 </div>
                 {% endfor %}
             </div>
@@ -70,6 +71,7 @@
 </div>
 
 {% if loaded_sheet %}
+{{ LOADED }}
 <div class='loaded-sheet__wrapper'>
     <div class='loaded-sheet'>
         <div class='loaded-sheet__title'>

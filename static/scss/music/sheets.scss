@@ -61,18 +61,6 @@
         }
 
         #discover {
-            .discover__title {
-                padding: 18px 10px 12px 12px;
-                letter-spacing: 1px;
-                line-height: 1.4;
-                font-size: 19px;
-                font-weight: 700;
-                font-family: 'Playfair Display', serif;
-                font-style: italic;
-                color: #d0c6d8;
-                letter-spacing: 1.6px;
-            }
-
             .discover__genres {
                 margin-top: 4%;
             
@@ -81,7 +69,7 @@
                     width: fit-content;
             
                     .discover__title {
-                        padding: 18px 10px 12px;
+                        padding: 18px 10px 12px 12px;
                         letter-spacing: 1px;
                         line-height: 1.4;
                         font-size: 19px;
@@ -89,9 +77,6 @@
                         font-family: 'Playfair Display', serif;
                         font-style: italic;
                         color: #d0c6d8;
-                        font-weight: 700;
-                        font-size: 13px;
-                        line-height: 28px;
                         letter-spacing: 1.6px;
                     }
             
@@ -263,11 +248,6 @@
     }
 }
 
-.comment {
-    text-align: left;
-    @include row;
-}
-
 .comments {
     margin-bottom: 40px;
 
@@ -280,11 +260,13 @@
     .comment {
         margin: 14px 0;
         width: fit-content;
+        text-align: left;
+        @include row;
 
         .comment-content {
             margin-inline: 10px;
 
-            .comment-content_username {
+            .comment-content__username {
                 color: #385898;
                 font-weight: bold;
             }
@@ -350,29 +332,36 @@
     font-size: 17px;
 }
 
-.music-sheet__sheet-sheet {
-    min-height: 594px;
+#sheet {
+    min-height: 615px;
     text-align: center;
+
+    #sheet__author {
+        padding-bottom: 43px;
+    }
+
+    #load-sheet-btn {
+        margin-top: 40px;
+    }
 
     textarea {
         @include rect(171px, 400px);
     }
 
+    #sheet-title {
+        @include margin-y(100px, 70px);
+    }
+
+    #sheet__content_value {
+        width: 70%;
+    }
 }
 
-.music-sheet__sheet-title {
-    @include margin-y(100px, 70px);
-}
-
-.music-sheet__sheet-author {
-    padding-bottom: 43px;
-}
-
-.music-sheet__sheet-for_genre {
+.sheet__for_genre {
     margin-bottom: 40px;
 }
 
-.music-sheet__sheet-for_genre_title {
+.sheet__for_genre_title {
 
     color: $darkorange;
 

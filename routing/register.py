@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Blueprint, abort
-from flask_cors import CORS, cross_origin
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask import render_template, request, redirect, Blueprint
+from flask_login import login_user
 from config.log_config import logging
-from db_models import db, User
+from db_models import User
 from helpers import read_json_file
 
 admins = read_json_file('data/keys.json')
@@ -15,8 +14,7 @@ def register_post():
     user = User(email=email, username=username, password=password)
     if user.username in admins:
         user.is_admin = True
-    user_exists = len(db.session.query(User).filter_by(email=user.email).all()) > 0 and len(
-        db.session.query(User).filter_by(username=user.username).all()) > 0
+    user_exists = User.find(email=user.email) and User.find(username=user.username)
     if not user_exists:
         User.save(user)
         login_user(user)
