@@ -1,11 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Blueprint, abort
-from flask_cors import CORS, cross_origin
-from jinja2 import TemplateNotFound
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask import render_template, request, redirect, Blueprint
+from flask_login import login_required, current_user
 from config.log_config import logging
 from db_models import db, Comment, MusicSheet
-import time
-import os
 from helpers import read_json_file
 
 music_pages = Blueprint('music', __name__, template_folder='templates/music/', url_prefix = '/music')
@@ -66,7 +62,7 @@ def artists():
     if current_user.is_anonymous:
         return render_template('music/artists.html', letter = letter, music_artists = music_artists)
     return render_template('music/artists.html', loggedinuser = current_user.username, letter=letter,
-                           music_artists=music_artists)
+        music_artists=music_artists)
 
 @music_pages.route('/artists/<string:artist>')
 def artist(artist):
@@ -76,7 +72,7 @@ def artist(artist):
     return render_template('music/artist.html', loggedinuser = current_user.username, artist = artist, music_sheets_by_artist = music_sheets_by_artist)
 
 @music_pages.route('/sheets')
-def music_sheets():
+def get_sheets():
     letter = request.args.get('letter')
     music_sheets = get_music_sheets_letter(letter)
     logging.info(music_sheets)
@@ -84,12 +80,13 @@ def music_sheets():
         return render_template('music/sheets.html', letter = letter, music_sheets = music_sheets)
     return render_template('music/sheets.html', loggedinuser = current_user.username, letter = letter, music_sheets = music_sheets)
 
-@music_pages.route('/sheets/<int:sheet_id>')
-def music_sheet(sheet_id):
-    music_sheet = vars(MusicSheet.query.filter_by(id = sheet_id).first())
+@music_pages.route('/sheets/<int:id>')
+def get_by_id(id):
+    music_sheet = vars(MusicSheet.query.filter_by(id = id).first())
     if current_user.is_anonymous:
-        return render_template('music/music_sheet.html', music_sheet = music_sheet)
-    return render_template('music/music_sheet.html', loggedinuser = current_user.username, music_sheet = music_sheet)
+        return render_template('music/sheet.html', music_sheet = music_sheet)
+    
+    return render_template('music/sheet.html', loggedinuser = current_user.username, music_sheet = music_sheet)
 
 @music_pages.route('/sheets/edit/<int:id>', methods = ['GET', 'POST'])
 def edit_sheet(id):
@@ -101,12 +98,10 @@ def edit_sheet(id):
 @music_pages.route('/sheets/update/<int:id>', methods = ['GET', 'POST'])
 def update_sheet(id):
     sheet = MusicSheet.query.get_or_404(id)
-    author = sheet.author
     if request.method == 'POST':
         selected_option = request.form.get('update_genres_select')
         sheet.genre = selected_option
-        db.session.add(sheet)
-        db.session.commit()
+        sheet.save()
         return redirect('/music/sort_genres')
     return render_template('music/update_genres.html', loggedinuser = current_user.username, admin = current_user.isadmin)
 

@@ -10,7 +10,7 @@
 
 <script>
     const inboxMessages = {{ inbox_messages| tojson }}
-    const allEmails = {{ all_emails| tojson }}
+    const username = {{ loggedinuser| tojson }}
 </script>
 
 {% endblock %}
@@ -18,10 +18,10 @@
 {% block body %}
 
 <div id='inbox'>
-    <div id='inbox_overview'>
-        <div class='inbox_compose-message_button'>
-            <a href='/compose-message'>
-                <button class='submit-btn-alt'>COMPOSE MESSAGE</button>
+    <div id='inbox-overview'>
+        <div class="inbox_compose-message__btn {% if inbox_messages|length > 0 %}inbox-messages-btn{% endif %}">
+            <a href="/compose-message">
+                <button class="submit-btn-alt">COMPOSE MESSAGE</button>
             </a>
         </div>
         {% for message in inbox_messages %}
@@ -39,7 +39,7 @@
                         {{ message.author }}
                     </div>
                     <div class='inbox-message__time'>
-                        {{ (message.datetime|string)[:10] }}
+                        {{ (message.created_at|string)[:10] }}
                     </div>
                 </div>
                 <div class='inbox-message__msg_content'>
@@ -49,12 +49,12 @@
         </div>
         {% endfor %}
     </div>
-    <div class='inbox-message__content-wrapper'>
-        <div class='inbox-message__content'>
-            <div class='inbox-message__content-title'>
+    <div id='inbox-message__content-wrapper'>
+        <div id='inbox-message__content'>
+            <div id='inbox-message__content-title'>
                 Welcome, {{ loggedinuser }}
             </div>
-            <div class='inbox-message__content-value'>
+            <div id='inbox-message__content-value'>
                 {% if inbox_messages|length > 0 %}
                 You have messages in your inbox.
                 {% else %}
@@ -63,29 +63,29 @@
                 {% endif %}
             </div>
         </div>
-        <div class='received'>
-            <div class='received__sender'>
+        <div id='received'>
+            <div id='received__sender'>
                 <div class='received__sender_avatar'>
                     <img class='received__sender_avatar_img'>
                 </div>
-                <div class='received__sender_email'>&nbsp;</div>
+                <div id='received__sender_email'>&nbsp;</div>
             </div>
-            <div class='received__receiver'>
+            <div id='received__receiver'>
                 <div class='received__receiver-avatar'>
                     <img class='received__receiver-avatar_img'>
                 </div>
-                <div class='received__receiver-email'>&nbsp;</div>
+                <div id='received__receiver-email'>&nbsp;</div>
             </div>
-            <div class='received__content_wrapper'>
-                <div class='received__content'>
-                    <div class='received__content_header'>
-                        <div class='received__content_header__sender'>&nbsp;</div>
-                        <div class='received__content_header__datetime'>&nbsp;</div>
+            <div class='row'>
+                <div id='received__content'>
+                    <div id='received__content-header'>
+                        <div id='received__content-header__sender'>&nbsp;</div>
+                        <div id='received__content-header__datetime'>&nbsp;</div>
                     </div>
-                    <div class='received__content_content'>&nbsp;</div>
+                    <div id='received__content_content'>&nbsp;</div>
                     <div class='row'>
                         <a id='reply-link' href='/compose-message'>
-                            <button class='reply_message_button'>
+                            <button id='reply-message-btn'>
                                 REPLY
                             </button>
                         </a>

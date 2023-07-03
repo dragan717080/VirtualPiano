@@ -161,7 +161,7 @@ body {
   font-weight: bold;
 }
 
-.upload_link {
+.upload-link {
   color: $darkorange;
   text-decoration: none;
 }
@@ -178,25 +178,8 @@ body {
   text-transform: uppercase;
 }
 
-.load_sheet_button {
-  height: 38px;
-  width: 190px;
-  margin-top: 40px;
-  background-color: #000;
-  color: $darkorange;
-  border: 1px solid $darkorange;
-  cursor: pointer;
-}
-
-.compose-message_button {
-  height: 38px;
-  width: 190px;
-  margin-top: 40px;
-  margin-left: 17%;
-  background-color: #000;
-  color: $darkorange;
-  border: 1px solid $darkorange;
-  cursor: pointer;
+#load-sheet-btn {
+  margin-top: 30px;
 }
 
 .sort_genre_button {

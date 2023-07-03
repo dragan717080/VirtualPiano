@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Blueprint, abort
-from flask_cors import CORS, cross_origin
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask import  render_template, request, redirect, Blueprint
+from flask_cors import cross_origin
+from flask_login import login_required, current_user
 from db_models import User, Avatar, Message
 from helpers import read_json_file, get_inbox_messages
-import os
 
 profile_pages = Blueprint('profile', __name__, url_prefix = '/')
 
@@ -56,6 +55,5 @@ def inbox():
         'avatar_format': current_user.avatar.image_format if current_user.avatar else None,
         'all_emails': []
     }
-    print(get_inbox_messages(current_user.id))
     # Need to pass list of dicts containing usernames and avatars
     return render_template('inbox.html', **params)

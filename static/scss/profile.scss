@@ -1,12 +1,24 @@
 @import '../scss/includes';
 
-.profile__wrapper {
+#profile {
     min-height: 622px;
     text-align: center;
 
-    .profile-username {
-        margin-top: 80px;
-        margin-bottom: 99px;
+    #profile-username {
+        margin: 80px 0;
+    }
+
+    #profile-avatar-image {
+        margin-bottom: 40px;
+    
+        .profile-avatar-image__pic {
+            margin-bottom: 40px;
+        }
+
+        img {
+            @include square(80px);
+            border-radius: 50%;
+        }
     }
 
     .get_avatar {
@@ -14,36 +26,18 @@
     }
 
     .submit-btn {
-        margin-top: 26px;
-        margin-bottom: 22px;
-    }
-
-    label {
-        margin-left: 102px;
+        @include margin-y(26px, 22px);
     }
 }
 
-.profile_avatar_image {
-    margin-bottom: 40px;
-
-    img {
-        @include square(80px);
-        border-radius: 50%;
-    }
-
-    .profile_avatar_image_pic {
-        margin-bottom: 40px;
-    }
+.choose-profile-pic {
+    margin: 40px 0 40px 102px;
 }
 
-.profile_avatar_image_1 {
-    margin: 40px 0;
-}
-
-.profile_music {
+#profile-music {
     margin-bottom: 40px;
 }
 
-.profile_inbox {
+#profile-inbox {
     margin: 40px 0;
 }

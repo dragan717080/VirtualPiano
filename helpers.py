@@ -30,6 +30,7 @@ def get_inbox_messages(id):
     inbox_messages = []
     for message in messages:
         d = Message.to_dict(message)
+        d['author'] = message.author.username
         d['avatar'] = message.author.avatar.image.decode('latin-1') if message.author.avatar else None
         d['avatar_format'] = message.author.avatar.image_format if message.author.avatar else None
         inbox_messages.append(d)

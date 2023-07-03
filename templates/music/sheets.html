@@ -117,7 +117,7 @@
         </div>
         <div class="request">
             <div class="request__music-sheet">
-                <div class="request__artists_title">
+                <div class="sheets-subtitle">
                     Artists
                 </div>
                 <div class="request__music-sheets__content">
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="request__artists">
-                <div class="request__artists_title">
+                <div class="sheets-subtitle">
                     Music Sheets
                 </div>
                 <div class="request__artists_content">
@@ -169,7 +169,7 @@
 
 <div class="request">
     <div class="music-sheets__request">
-        <div class="music-sheets__request_title">
+        <div class="sheets-subtitle">
             Request a song
         </div>
         <div class="music-sheets__request_content">
@@ -218,7 +218,7 @@
     </div>
 
     <div class='music-sheets__submit'>
-        <div class='music-sheets__submit-title'>
+        <div class='sheets-subtitle'>
             Submit a Music Sheet
         </div>
         <div class='music-sheets__submit-content'>
@@ -227,11 +227,11 @@
             The below button opens a Google Form. You will need to log in to your Google Account to upload your
             Sound/Video file to our Google Cloud.
         </div>
-        <div class="music-sheets__submit-content_title">
+        <div class='music-sheets__submit-content_title'>
             Latest sheets
         </div>
         <div class="music-sheets__submit-content_latest_music">
-            {% for sheet in latest_music %}
+            {% for sheet in latest_sheets %}
             <div class="latest_music_title">
                 <a class="music_link" href="/music/sheets/{{ sheet.id }}">
                     {{ sheet.title.split(".")[0] }}

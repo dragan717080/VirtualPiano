@@ -24,21 +24,16 @@
         <div class='header__logo'>
             <img src="{{ url_for('static', filename = '/images/virtual-piano-keyboard-logo.png') }}">
         </div>
-        <div class='header-menu__item active'>
-            <a href='/'>
-                Play Piano
-            </a>
+        {% set menu_items = [
+            { 'title': 'Play Piano', 'href': '/', 'active': True },
+            { 'title': 'Music Sheets', 'href': '/music', 'active': False },
+            { 'title': 'Learn / Teach', 'href': '/learn-teach', 'active': False }
+        ] %}
+        {% for item in menu_items %}
+        <div class="header-menu__item {% if item.active %}active{% endif %}">
+            <a href="{{ item.href }}">{{ item.title }}</a>
         </div>
-        <div class='header-menu__item'>
-            <a href='/music'>
-                Music Sheets
-            </a>
-        </div>
-        <div class='header-menu__item'>
-            <a href='/learn_teach'>
-                Learn / Teach
-            </a>
-        </div>
+        {% endfor %}
         {% if admin %}
         <div class='header-menu__item'>
             <a href='/music/sort_genres' style='color:red'>
@@ -46,9 +41,7 @@
             </a>
         </div>
         {% endif %}
-        <div class='header__search'>
-            
-        </div>
+        <div class='header__search'></div>
         {% if not loggedinuser %}
         <div class='changetodoonhover header__register-login'>
             <a id='register-login-link' href='/login/'>

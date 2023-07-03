@@ -1,158 +1,145 @@
 @import '../scss/includes';
 
 #inbox {
-    min-height:662px;
-    padding-top:40px;
+    min-height: 662px;
+    padding-top: 40px;
     @include row;
 
-    a {
-        @include orange-link;
+    #inbox-overview {
+        width: 31%;
+        margin-top: 80px;
+
+        .inbox_compose-message__btn {
+            min-width: 190px;
+
+            button {
+                margin-right: 34px;
+            }
+        }
+
+        .inbox-messages-btn {
+            margin-left: 109px;
+        }
+
+        .inbox-message {
+            width: fit-content;
+            padding: 10px;
+            display: flex;
+
+            .inbox-message__avatar {
+                margin-left: 10px;
+                margin-top: -7px;
+            }
+
+
+            .inbox-message__msg {
+                min-width: 280px;
+                cursor: pointer;
+
+                .inbox-message__overview {
+                    @include grid(2);
+
+                    .inbox-message__sender {
+                        margin-top: 8px;
+                        font-weight: bold;
+                    }
+
+                    .inbox-message__time {
+                        padding-top: 12px;
+                        text-align: right;
+                    }
+                }
+
+                .inbox-message__msg_content {
+                    margin-top: 4px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+
+            img {
+                @include square(45px);
+                margin-top: 20px;
+                margin-right: 14px;
+            }
+        }
     }
-}
 
-.inbox_compose-message_button {
-    min-width: 190px;
+    #inbox-message__content-wrapper {
+        width: 40%;
 
-    button {
-        margin-right: 34px;
+        #inbox-message__content-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 4px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        #inbox-message__content-value {
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        a {
+            @include orange-link;
+        }
     }
-}
 
-.reply_message_button {
-    margin: 40px 0;
-    padding:10px;
-    background-color: #000;
-    color: $darkorange;
-}
+    #received {
+        margin-top: 137px;
+        display: none;
 
-.inbox_overview {
-    width:31%;
-    margin-top:80px;
-}
+        #received__sender {
+            padding: 10px;
+            background-color: #f3f4f6;
+            display: flex;
+        }
 
-.inbox-message {
+        #received__receiver {
+            padding: 10px;
+            background-color: #f3f4f6;
+            display: flex;
+        }
 
-    width:fit-content;
-    padding:10px;
-    display:flex;
+        #received__sender_email,
+        #received__receiver-email {
+            margin-left: 14px;
+            padding-top: 8px;
+        }
 
-    img {
-        @include square(45px);
-        margin-top:14px;
-        margin-right:14px;
+        #received__content {
+            width: 100%;
+            margin: 14px;
+        
+            #received__content-header {
+                margin-top: 12px;
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+        
+                #received__content-header_datetime {
+                    text-align: right;
+                }
+            }
+        
+            #received__content_content {
+                margin-top: 59px;
+                padding: 22px 14px;
+                min-height: 140px;
+                background-color: #f3f4f6;
+            }
+        }        
+
+        #reply-message-btn {
+            margin: 40px 0;
+            padding: 10px;
+            background-color: #000;
+            color: $darkorange;
+            min-width: 130px;
+        }
+
+        img {
+            @include square(40px);
+        }
     }
-}
-
-.inbox-message__overview {
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-}
-
-.inbox-message__msg_content {
-
-    margin-top:4px;
-    font-weight:bold;
-    cursor:pointer;
-
-}
-
-.inbox-message__content-title {
-
-    font-size: 24px;
-    font-weight: bold;
-    margin-top:4px;
-    margin-bottom:40px;
-    text-align:center;
-
-}
-
-.inbox-message__content-value {
-
-    text-align:center;
-    line-height: 1.5;
-
-}
-
-.inbox-message__avatar {
-
-    margin-left: 10px;
-    margin-top: -7px;
-
-}
-
-.inbox-message__msg {
-
-    min-width: 280px;
-    cursor:pointer;
-
-}
-
-.inbox-message__sender {
-
-    margin-top:8px;
-    font-weight:bold;
-
-}
-
- .received__sender_email, .received__receiver-email {
-    margin-left:14px;
-    padding-top:8px;
-}
-
-.inbox-message__time {
-    padding-top:12px;
-    text-align:right;
-}
-
-.inbox-message__content-wrapper {
-    width:40%;
-}
-
-.received {
-    margin-top: 137px;
-    display:none;
-}
-
-.received__sender {
-    padding:10px;
-    background-color:#f3f4f6;
-    display:flex;
-}
-
-.received__receiver {
-    padding:10px;
-    background-color:#f3f4f6;
-    display:flex;
-}
-
-.received__receiver img, .received__sender img {
-    @include square(40px);
-}
-
-.received__content_wrapper {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.received__content {
-    width:100%;
-    margin:14px;
-}
-
-.received__content_header {
-    margin-top:12px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-}
-
-.received__content_header_datetime {
-    text-align:right;
-}
-
-.received__content_content {
-    margin-top:59px;
-    padding-left:14px;
 }

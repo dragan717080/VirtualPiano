@@ -1,4 +1,4 @@
-const musicSheetContent = document.getElementsByClassName("music_sheet_content_content")[0];
+const musicSheetContent = document.getElementsByClassName("music-sheet__sheet-content_content")[0];
 
 function editMusicSheet(sheet) {
     musicSheet = musicSheet.substr(2, musicSheet.length - 3);

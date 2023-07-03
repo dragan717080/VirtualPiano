@@ -11,17 +11,11 @@
 {% block body1 %}
 
 {% if loggedinuser %}
-<div class='checkifloggeduser'>
-    <div class='checkifloggeduser1'>
-        {% if isadmin %}
-        <span class='logged_in_name_admin'>
+<div class='check-logged-user__wrapper'>
+    <div class='check-logged-user'>
+        <span class='{% if isadmin %}logged_in_name_admin{% else %}logged_in_name{% endif %}'>
             {{ loggedinuser }}
         </span>
-        {% else %}
-        <span class='logged_in_name'>
-            {{ loggedinuser }}
-        </span>
-        {% endif %}
         <a href='/logout'>Logout</a>
     </div>
 </div>
@@ -31,13 +25,12 @@
 
 {% block body %}
 
-<div class='profile__wrapper'>
-    <div class='profile-username'>
+<div id='profile'>
+    <div id='profile-username'>
         {{ loggedinuser }}
         <br><br>
         Member since {{ profilecreated }}
     </div>
-    <div class='profile__avatar'>
         {% if not avatar %}
         <div class='get_avatar'>
             Get avatar
@@ -52,34 +45,31 @@
             </div>
         </form>
         {% else %}
-        <div class='profile_avatar_image'>
+        <div id='profile-avatar-image'>
             {% if avatar %}
-            <div class='profile_avatar_image_pic'>
+            <div class='profile-avatar-image__pic'>
                 <img src='data:image/{{ avatar_format }};base64,{{ avatar|b64encode }}'>
             </div>
             {% endif %}
             <form enctype='multipart/form-data' method='POST'>
-                <div class='profile_avatar_image_1'>
+                <div class='choose-profile-pic'>
                     <label for='profile_picture'>Choose a profile picture:</label>
                     <input type='file' id='change_profile_picture' name='profile_picture'
                         accept='image/png, image/jpeg'>
                 </div>
-                <div class='change_profile'>
-                    <button name='submit' value='CHANGE_AVATAR' class='submit-btn' type='submit'>
-                        Change profile picture
-                    </button>
-                </div>
+                <button name='submit' value='CHANGE_AVATAR' class='submit-btn' type='submit'>
+                    Change profile picture
+                </button>
             </form>
         </div>
         {% endif %}
+    <div id='profile-inbox'>
+        You have {{ inbox_messages|length }} messages in inbox. <br><br>
+        <a class='upload-link' href='/inbox'>Inbox</a>
     </div>
-    <div class='profile_inbox'>
-        You have {{ inbox-messages|length }} messages in inbox. <br><br>
-        <a class='upload_link' href='/inbox'>Inbox</a>
-    </div>
-    <div class='profile_music'>
+    <div id='profile-music'>
         You have submitted {{ music_sheet|length }} music sheets. <br><br>
-        <a class='upload_link' href='/upload'>Upload a music sheet now!</a>
+        <a class='upload-link' href='/upload'>Upload a music sheet now!</a>
     </div>
 </div>
 

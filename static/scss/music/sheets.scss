@@ -145,8 +145,7 @@
 }
 
 .compose-message_textarea {
-    margin-top: 12px;
-    margin-bottom: 14px;
+    @include margin-y(12px, 14px);
     display: grid;
 }
 
@@ -190,15 +189,10 @@
     margin-right: 70px;
 }
 
-.request__music-sheets__title,
-.request__artists_title,
-.music-sheets__request_title,
-.music-sheets__submit-title {
-
+.sheets-subtitle {
     font-style: italic;
     margin-top: 7px;
     margin-bottom: 43px;
-
 }
 
 .music-sheets__row {
@@ -216,10 +210,8 @@
 }
 
 .edit_sheet_textarea {
-
     min-height: 120px;
     min-width: 740px;
-
 }
 
 .artists_element_button {
@@ -264,6 +256,11 @@
 .compose-message_wrapper {
     min-height: 701px;
     @include row;
+
+    #compose-message-btn {
+        margin-top: 4px;
+        margin-left: 40px;
+    }
 }
 
 .music-sheets__comment {
@@ -306,16 +303,12 @@
 }
 
 .music-sheets__comment_content_username {
-
     color: #385898;
     font-weight: bold;
-
 }
 
 .music-sheets__submit {
-
     width: 40%;
-
 }
 
 .music-sheets__submit-content_title {
@@ -325,12 +318,9 @@
 }
 
 .sheets_by_artist_links {
-
-    margin-top: 10px;
-    margin-bottom: 14px;
+    @include margin-y(10px, 14px);
     color: $darkorange;
     text-decoration: none;
-
 }
 
 .music-sheets__upload {
@@ -343,15 +333,12 @@
 }
 
 .music-sheets__upload_1 {
-
     font-weight: bold;
-
 }
 
 .update_genres {
     min-height: 474px;
-    margin-top: 100px;
-    margin-bottom: 120px;
+    @include margin-y(100px, 120px);
 }
 
 .update_genres_select {
@@ -364,12 +351,11 @@
 }
 
 .genre_title {
-    margin-top: 40px 0;
+    margin-top: 40px;
     font-size: 17px;
 }
 
-.music_sheet_sheet {
-
+.music-sheet__sheet-sheet {
     min-height: 594px;
     text-align: center;
 
@@ -379,20 +365,19 @@
 
 }
 
-.music_sheet_sheet_title {
-    margin-top: 100px;
-    margin-bottom: 70px;
+.music-sheet__sheet-title {
+    @include margin-y(100px, 70px);
 }
 
-.music_sheet_sheet_author {
+.music-sheet__sheet-author {
     padding-bottom: 43px;
 }
 
-.music_sheet_for_genre {
+.music-sheet__sheet-for_genre {
     margin-bottom: 40px;
 }
 
-.music_sheet_for_genre_title {
+.music-sheet__sheet-for_genre_title {
 
     color: $darkorange;
 
@@ -403,12 +388,9 @@
 }
 
 .latest_music_title {
-
-    margin-top: 14px;
-    margin-bottom: 14px;
+    margin: 14px 0;
     font-size: 17px;
     font-weight: bold;
-
 }
 
 .artists_link,

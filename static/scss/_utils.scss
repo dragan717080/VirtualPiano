@@ -44,3 +44,12 @@
     text-align: center;
 }
 
+@mixin margin-y($value-h, $value-v) {
+    margin-top: $value-h;
+    margin-bottom: $value-v;
+}
+
+@mixin grid($ncol) {
+    display: grid;
+    grid-template-columns: repeat($ncol, 1fr);
+}

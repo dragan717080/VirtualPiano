@@ -12,20 +12,17 @@ register_pages = Blueprint('register', __name__, url_prefix = '/')
 @register_pages.route('/register', methods = ['POST'])
 def register_post():
     email, username, password = request.form['email'], request.form['username'], request.form['password1']
-    logging.debug(email, username, password)
-    nu = User(email=email, username=username, password=password)
-    if nu.username in admins:
-        nu.isadmin = True
-    user_exists = len(db.session.query(User).filter_by(email=nu.email).all()) > 0 and len(
-        db.session.query(User).filter_by(username=nu.username).all()) > 0
-    logging.debug(user_exists)
+    user = User(email=email, username=username, password=password)
+    if user.username in admins:
+        user.is_admin = True
+    user_exists = len(db.session.query(User).filter_by(email=user.email).all()) > 0 and len(
+        db.session.query(User).filter_by(username=user.username).all()) > 0
     if not user_exists:
-        User.save(nu)
-        login_user(nu)
+        User.save(user)
+        login_user(user)
 
     return redirect('/')
 
 @register_pages.route('/register')
 def register():
-    logging.debug(User.find_all(User))
-    return render_template('register.html', all_users=User.find_all(User))
+    return render_template('register.html', all_users=User.find_all())

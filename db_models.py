@@ -107,9 +107,11 @@ class MusicSheet(BaseModel):
 
     @staticmethod
     def get_latest(limit=None):
-        return BaseModel.get_latest(MusicSheet, limit)
+        sheets = [item.to_dict(item) for item in BaseModel.get_latest(MusicSheet, limit)]
+        for sheet in sheets:
+            sheet['author'] = User.find(id=sheet['author_id']).username
+        return sheets
     
-
 class Comment(BaseModel):
     __bind_key__ = 'comments'
     content = db.Column(db.Text, nullable=False)
