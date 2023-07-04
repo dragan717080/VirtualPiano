@@ -7,4 +7,3 @@ Virtual Piano website. It uses
     <li>Jinja2</li>
 </ul>
 
-ETA 1 day

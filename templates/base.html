@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang='en'>
 
+{% assets 'base_css' %}
+<link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
+{% endassets %}
+
 <head>
     <meta charset='UTF-8'>
     <link rel='preconnect' href='https://fonts.googleapis.com'>
@@ -9,10 +13,6 @@
     <link rel='shortcut icon' href="{{ url_for('static', filename='/images/logoicon.png') }}" type='image/x-icon'>
     <link href='https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    
-    {% assets 'base_css' %}
-    <link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
-    {% endassets %}
 
     {% block head %}
 

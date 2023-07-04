@@ -230,6 +230,12 @@ body {
   text-transform: uppercase;
 }
 
+.submit-btn:hover {
+  background-color: $darkorange;
+  color: #000;
+  border: 2px solid #000;
+}
+
 .submit-btn-alt {
   margin-bottom: 40px;
   padding: 10px;

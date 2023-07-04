@@ -327,8 +327,7 @@
     @include row;
 
     .loaded-sheet__title {
-        margin-top: 70px;
-        margin-bottom: 73px;
+        @include margin-y(70px, 73px);
         text-align: center;
     }
 

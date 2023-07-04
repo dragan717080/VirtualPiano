@@ -80,7 +80,7 @@ def get_sheets():
     return render_template('music/sheets.html', loggedinuser = current_user.username, letter = letter, music_sheets = music_sheets)
 
 @music_pages.route('/sheets/<int:id>')
-def get_by_id(id):
+def get_sheet_by_id(id):
     music_sheet = MusicSheet.query.filter_by(id = id).first()
     if current_user.is_anonymous:
         return render_template('music/sheet.html', music_sheet = music_sheet)
