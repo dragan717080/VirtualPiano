@@ -26,7 +26,7 @@ class BaseModel(db.Model):
 
     @classmethod
     def get_by_letter(cls, field, letter):
-        return cls.query.filter(getattr(cls, field).startswith(field)).all()
+        return cls.query.filter(getattr(cls, field).startswith(letter)).all()
 
     def save(self):
         db.session.add(self)
@@ -91,12 +91,26 @@ class MusicSheet(BaseModel):
     __bind_key__ = 'music_sheets'
     title = db.Column(db.String(100), nullable=False, unique=True)
     content = db.Column(db.Text, nullable=False)
-    genre = db.Column(db.String(100))
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
+    genre_id = db.Column(db.Integer, db.ForeignKey('genres.id'))
+
 class Comment(BaseModel):
     __bind_key__ = 'comments'
     content = db.Column(db.Text, nullable=False)
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+class Artist(BaseModel):
+    __bind_key__ = __tablename__ = 'artists'
+    name = db.Column(db.String(100), nullable=False, unique=True)
+    image = db.Column(db.LargeBinary)
+    image_format = db.Column(db.String(10))
+    sheets = db.relationship('MusicSheet', backref='artist')
+
+class Genre(BaseModel):
+    __bind_key__ = __tablename__ = 'genres'
+    name = db.Column(db.String(100), nullable=False, unique=True)
+
+    sheets = db.relationship('MusicSheet', backref='genre')

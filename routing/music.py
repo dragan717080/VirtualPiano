@@ -71,16 +71,21 @@ def artist(artist):
     return render_template('music/artist.html', loggedinuser = current_user.username, artist = artist, music_sheets_by_artist = music_sheets_by_artist)
 
 @music_pages.route('/sheets')
-def get_sheets():
+def sheets():
+    data = Helpers.read_json_file('data/music_data.json')
     letter = request.args.get('letter')
-    music_sheets = MusicSheet.get_by_letter(letter)
-    logging.info(music_sheets)
+    music_sheets = MusicSheet.get_by_letter('title', letter)
+    print(music_sheets)
+    params = {
+        'letter': letter, 'music_sheets': music_sheets, 'data': data
+    }
+
     if current_user.is_anonymous:
-        return render_template('music/sheets.html', letter = letter, music_sheets = music_sheets)
-    return render_template('music/sheets.html', loggedinuser = current_user.username, letter = letter, music_sheets = music_sheets)
+        return render_template('music/sheets.html', **params)
+    return render_template('music/sheets.html', loggedinuser = current_user.username, **params)
 
 @music_pages.route('/sheets/<int:id>')
-def get_sheet_by_id(id):
+def sheet_by_id(id):
     music_sheet = MusicSheet.query.filter_by(id = id).first()
     if current_user.is_anonymous:
         return render_template('music/sheet.html', music_sheet = music_sheet)

@@ -1,7 +1,7 @@
 import json
 import glob
 import importlib.util
-from db_models import User, Message, Avatar, MusicSheet
+from db_models import User, Message, MusicSheet
 from abc import ABC
 
 class Helpers(ABC):

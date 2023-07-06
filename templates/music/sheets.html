@@ -121,7 +121,7 @@
                     Artists
                 </div>
                 <div class="request__music-sheets__content">
-                    {% set rows = ['ABCDEFGHIJK', 'NOPQRSTUV', 'WXYZ'] %}
+                    {% set rows = ['ABCDEFGHIJK', 'LMNOPQRSTUV', 'WXYZ'] %}
                     {% for row in rows %}
                     <div class="music-sheets__row">
                         {% for item in row %}
@@ -140,7 +140,7 @@
                     Music Sheets
                 </div>
                 <div class="request__artists_content">
-                    {% set rows = ['ABCDEFGHIJK', 'NOPQRSTUV', 'WXYZ'] %}
+                    {% set rows = ['ABCDEFGHIJK', 'LMNOPQRSTUV', 'WXYZ'] %}
                     {% for row in rows %}
                     <div class="music-sheets__row">
                         {% for item in row %}
@@ -237,7 +237,7 @@
                 </a>
             </div>
             <div class="latest_music_user">
-                by {{ sheet.author }}
+                by {{ sheet.author.username }}
             </div>
             {% endfor %}
         </div>

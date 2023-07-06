@@ -13,7 +13,7 @@ def index():
     keys, keyboard_notes, keyboard_sounds = data['keys'], data['notes'], data['sounds']
     loaded_music_sheet = request.args.get('loaded-sheet')
     if loaded_music_sheet != None:
-        loaded_sheet = MusicSheet.query.filter_by(title = loaded_music_sheet).first()
+        loaded_sheet = MusicSheet.get(title = loaded_music_sheet)
     else: loaded_sheet = None
     params = {
         'keyboard_notes': keyboard_notes,
