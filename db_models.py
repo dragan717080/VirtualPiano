@@ -44,10 +44,9 @@ class BaseModel(db.Model):
 
     @classmethod
     def get_latest(cls, limit=None):
-        query = cls.query
-        list1 = query.order_by(cls.created_at).all()
-        list1.reverse()
-        return list1 if limit is not None else list1[:limit]
+        users = cls.query.order_by(cls.created_at).all()
+        users.reverse()
+        return users if limit is not None else users[:limit]
     
     @classmethod
     def to_dict(cls, self):
@@ -80,19 +79,6 @@ class User(BaseModel, UserMixin):
     comments = db.relationship('Comment', backref='author')
     # Message has two foreign keys of same model
     #messages = db.relationship('Message', primaryjoin="or_(User.id == Message.author_id, User.id == Message.recipient_id)", backref='user')
-
-    @staticmethod
-    def get_most_active(limit=None):
-        users = [{
-            'username': user.username,
-            'sheets': len(user.music_sheets),
-            'comments': len(user.comments),
-            'avatar': user.avatar.image if user.avatar else None,
-            'avatar_format': user.avatar.image_format if user.avatar else None
-        } for user in User.query.all()]
-        users = list(filter(lambda user: user['sheets'] > 0, users))
-        if limit is not None: users = users[:limit]
-        return sorted(users, key=lambda i: i['sheets'], reverse=True)
 
 class Avatar(BaseModel):
     __bind_key__ = 'avatars'
