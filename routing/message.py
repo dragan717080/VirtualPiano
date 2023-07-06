@@ -10,10 +10,10 @@ message_pages = Blueprint('message', __name__)
 def compose_message_post():
     if request.form['submit'] == 'compose-message':
         recipient_username = request.form['compose-message']
-        recipient = User.find(username=recipient_username)
+        recipient = User.get(username=recipient_username)
         message_content = request.form['message_content']
         if message_content != '' and len(User.query.filter_by(username = recipient_username).all()) > 0 and recipient_username != current_user.username:
-            message = Message(content = message_content, author = User.find(username = current_user.username), recipient = recipient)
+            message = Message(content = message_content, author = User.get(username = current_user.username), recipient = recipient)
             message.save()
             return redirect('/')
         else:

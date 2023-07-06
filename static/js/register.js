@@ -1,31 +1,39 @@
-var email = document.getElementById('email');
-var username = document.getElementById('username');
-var passwordOne = document.getElementById('password1');
-var passwordTwo = document.getElementById('password2');
-var handleEmail = document.getElementById('email-error');
-var handleUsername = document.getElementById('username-error');
-var handleShortPassword = document.getElementById('password-error');
-var handlePassNoMatch = document.getElementById('password-matching-error');
-var allUsernames = [];
+const email = document.getElementById('email');
+const username = document.getElementById('username');
+const passwordOne = document.getElementById('password1');
+const passwordTwo = document.getElementById('password2');
+const handleEmail = document.getElementById('email-error');
+const handleUsername = document.getElementById('username-error');
+const handleShortPassword = document.getElementById('password-error');
+const handlePassNoMatch = document.getElementById('password-matching-error');
+const handleNonUniqueUsername = document.getElementById('unique-username-error');
+const handleNonUniqueEmail = document.getElementById('unique-email-error');
 
-allUsernames = all_users.map((user) => user.username);
+const { allUsernames, allEmails } = allUsers.reduce((acc, { username, email }) => {
+    acc.allUsernames.push(username);
+    acc.allEmails.push(email);
+    return acc;
+  }, { allUsernames: [], allEmails: [] });
 const testEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 function validateRegistration(e) {
     const correctEmail = testEmail(email.value);
-    const correctUsername = username.value !== '';
+    const usernameNotEmpty = username.value !== '';
     const correctPasswordsLengths = password1.value.length > 7;
-    const correctPasswordsMatching = password1.value === password2.value;
+    const passwordsMatching = password1.value === password2.value;
+    const usernameIsUnique = !allUsernames.includes(username.value);
+    const emailIsUnique = !allEmails.includes(email.value);
 
-    const registrationSuccessful = correctEmail && correctUsername && correctPasswordsLengths && correctPasswordsMatching;
+    const registrationSuccessful = correctEmail && usernameNotEmpty && correctPasswordsLengths && passwordsMatching;
     if (registrationSuccessful) 
         return true;
     else {
-        handleUsername.style.display = !correctUsername ? 'block' : 'none';
-        handleUsername.innerText = !correctUsername ? 'Username must not be empty' : 'Username already exists'; 
+        handleUsername.style.display = !usernameNotEmpty ? 'block' : 'none';
         handleEmail.style.display = !correctEmail ? 'block' : 'none';
         handleShortPassword.style.display = !correctPasswordsLengths ? 'block' : 'none';
-        handlePassNoMatch.style.display = !correctPasswordsMatching ? 'block' : 'none';
+        handlePassNoMatch.style.display = !passwordsMatching ? 'block' : 'none';
+        handleNonUniqueUsername.style.display = !usernameIsUnique ? 'block' : 'none';
+        handleNonUniqueEmail.style.display = !emailIsUnique ? 'block' : 'none';
         return false;
     }
 }

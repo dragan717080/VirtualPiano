@@ -13,12 +13,20 @@ class BaseModel(db.Model):
         return {var: value for var, value in vars(item).items() if var not in BaseModel.excluded_keys}
 
     @classmethod
-    def find_all(cls):
+    def get_all(cls):
         return [cls.remove_excluded_keys(item) for item in cls.query.all()]
 
     @classmethod
-    def find(cls, **kwargs):
+    def get(cls, **kwargs):
         return cls.query.filter_by(**kwargs).first()
+
+    @classmethod
+    def get_by_id(cls, id):
+        return cls.query.get(id)
+
+    @classmethod
+    def get_by_letter(cls, field, letter):
+        return cls.query.filter(getattr(cls, field).startswith(field)).all()
 
     def save(self):
         db.session.add(self)
@@ -34,7 +42,7 @@ class BaseModel(db.Model):
         db.session.query(cls).delete()
         db.session.commit()
 
-    @staticmethod
+    @classmethod
     def get_latest(cls, limit=None):
         query = cls.query
         list1 = query.order_by(cls.created_at).all()
@@ -74,10 +82,6 @@ class User(BaseModel, UserMixin):
     #messages = db.relationship('Message', primaryjoin="or_(User.id == Message.author_id, User.id == Message.recipient_id)", backref='user')
 
     @staticmethod
-    def get_latest(limit=None):
-        return BaseModel.get_latest(User, limit)
-
-    @staticmethod
     def get_most_active(limit=None):
         users = [{
             'username': user.username,
@@ -109,7 +113,7 @@ class MusicSheet(BaseModel):
     def get_latest(limit=None):
         sheets = [item.to_dict(item) for item in BaseModel.get_latest(MusicSheet, limit)]
         for sheet in sheets:
-            sheet['author'] = User.find(id=sheet['author_id']).username
+            sheet['author'] = User.get(id=sheet['author_id']).username
         return sheets
     
 class Comment(BaseModel):

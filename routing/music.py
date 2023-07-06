@@ -73,7 +73,7 @@ def artist(artist):
 @music_pages.route('/sheets')
 def get_sheets():
     letter = request.args.get('letter')
-    music_sheets = get_music_sheets_letter(letter)
+    music_sheets = MusicSheet.get_by_letter(letter)
     logging.info(music_sheets)
     if current_user.is_anonymous:
         return render_template('music/sheets.html', letter = letter, music_sheets = music_sheets)

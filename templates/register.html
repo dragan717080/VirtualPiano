@@ -40,9 +40,11 @@
         </div>
         {% set errors = { 
             'email': "Email doesn't exist", 
-            'username': 'Username already exists',
+            'username': 'Username is too short',
             'password': 'Password is too short',
-            'password-matching': "Passwords don't match"
+            'password-matching': "Passwords don't match",
+            'unique-username': 'Username already exists',
+            'unique-email': 'Email already exists'
         } %}
         {% for k, v in errors.items() %}
         <div class = 'handlepotentialerrors' id = '{{ k }}-error'>

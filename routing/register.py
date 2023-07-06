@@ -14,7 +14,7 @@ def register_post():
     user = User(email=email, username=username, password=password)
     if user.username in admins:
         user.is_admin = True
-    user_exists = User.find(email=user.email) and User.find(username=user.username)
+    user_exists = User.get(email=user.email) and User.get(username=user.username)
     if not user_exists:
         User.save(user)
         login_user(user)
@@ -23,4 +23,4 @@ def register_post():
 
 @register_pages.route('/register')
 def register():
-    return render_template('register.html', all_users=User.find_all())
+    return render_template('register.html', all_users=User.get_all())
