@@ -12,7 +12,7 @@ The Virtual Piano App is a web application that allows users to play a virtual p
 ## Installation
 
 1. Clone the repository:
-``` git clone <https://github.com/dragan717080/VirtualPiano.git>```
+`[Link Text](https://example.com)`
 
 2. Create a virtual environment: `python -m venv venv`
 Windows: `venv\Scripts\activate`
