@@ -109,9 +109,9 @@ class MusicSheet(BaseModel):
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    @staticmethod
-    def get_latest(limit=None):
-        sheets = [item.to_dict(item) for item in BaseModel.get_latest(MusicSheet, limit)]
+    @classmethod
+    def get_latest(cls, limit=None):
+        sheets = [item.to_dict(item) for item in cls.get_latest(limit)]
         for sheet in sheets:
             sheet['author'] = User.get(id=sheet['author_id']).username
         return sheets

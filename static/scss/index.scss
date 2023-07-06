@@ -167,6 +167,11 @@
 .piano_hint_img {
     margin-bottom: 18px;
     @include row-h;
+
+    img {
+            @include square(67px);
+    border-radius: 50%;
+    }
 }
 
 .piano_hint img {

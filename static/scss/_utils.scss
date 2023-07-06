@@ -44,9 +44,19 @@
     text-align: center;
 }
 
-@mixin margin-y($value-h, $value-v) {
+@mixin margin-y($value-h, $value-v: null) {
     margin-top: $value-h;
-    margin-bottom: $value-v;
+    @if $value-v {
+        margin-bottom: $value-v;
+    }
+    @else {
+        margin-bottom: $value-h;
+    }
+}
+
+@mixin padding-y($value-h, $value-v: null) {
+    padding-top: $value-h;
+    padding-bottom: $value-v;
 }
 
 @mixin grid($ncol) {
