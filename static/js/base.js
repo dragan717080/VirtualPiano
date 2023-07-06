@@ -48,7 +48,7 @@ const linkHow = document.getElementById('link_how').childNodes[1];
 const linkAbout = document.getElementById('link_about').childNodes[1];
 const isIndex = window.location.href.endsWith('/');
 const prefix = isIndex ? '' : '/';
-const socialLinks = ['#piano', '#piano_hints', '#piano-info__title'];
+const socialLinks = ['#piano', '#piano__hints', '#piano-info__title'];
 
 [linkPlay, linkHow, linkAbout].forEach((link, i) => {
     link.href = prefix + socialLinks[i];

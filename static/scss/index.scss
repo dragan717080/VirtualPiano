@@ -153,30 +153,20 @@
     padding-top: 122px;
 }
 
-.piano_hints {
-    padding-top: 80px;
-    padding-bottom: 80px;
+.piano__hints {
+    @include padding-y(80px);
     @include row;
 }
 
-.piano_hint {
+.piano__hint {
     width: 162px;
     margin-inline: 40px;
-}
-
-.piano_hint_img {
-    margin-bottom: 18px;
-    @include row-h;
-
+    
     img {
-            @include square(67px);
-    border-radius: 50%;
+        @include square(67px);
+        margin-bottom: 18px;
+        border-radius: 50%;
     }
-}
-
-.piano_hint img {
-    @include square(67px);
-    border-radius: 50%;
 }
 
 .piano-info__wrapper {

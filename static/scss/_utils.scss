@@ -56,7 +56,12 @@
 
 @mixin padding-y($value-h, $value-v: null) {
     padding-top: $value-h;
-    padding-bottom: $value-v;
+    @if $value-v {
+        padding-bottom: $value-v;
+    }
+    @else {
+        padding-bottom: $value-h;
+    }
 }
 
 @mixin grid($ncol) {
