@@ -1,6 +1,6 @@
 # Virtual Piano App
 
-The Virtual Piano App is a web application that allows users to play a virtual piano on their devices. It is built using Flask, SQLAlchemy, Sass, and Jinja2.
+The Virtual Piano App is a web application that allows users to play a virtual piano on their devices.
 
 ## Features
 
@@ -23,3 +23,12 @@ The Virtual Piano App is a web application that allows users to play a virtual p
 3. Install the dependencies `pip install -r requirements.txt`
 
 4. Run the application `python3 app.py`
+
+## Technologies Used
+
+The Virtual Piano Application is built using the following technologies:
+
+- **Flask**: A Python web framework for building web applications.
+- **Jinja2**: A templating engine for rendering dynamic content in HTML pages.
+- **SQLAlchemy**: An ORM (Object-Relational Mapping) library for database interactions.
+- **Sass**: A CSS preprocessor that extends the capabilities of CSS with features like variables, mixins, and nested rules.
