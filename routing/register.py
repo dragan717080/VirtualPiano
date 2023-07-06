@@ -2,9 +2,9 @@ from flask import render_template, request, redirect, Blueprint
 from flask_login import login_user
 from config.log_config import logging
 from db_models import User
-from helpers import read_json_file
+from helpers import Helpers
 
-admins = read_json_file('data/keys.json')
+admins = Helpers.read_json_file('data/keys.json')
 
 register_pages = Blueprint('register', __name__, url_prefix = '/')
 

@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, Blueprint
 from flask_login import login_required, current_user
 from config.log_config import logging
 from db_models import db, Comment, MusicSheet
-from helpers import read_json_file
+from helpers import Helpers
 
 music_pages = Blueprint('music', __name__, template_folder='templates/music/', url_prefix = '/music')
 
@@ -15,7 +15,7 @@ def music_post():
 
 @music_pages.route('/')
 def music():
-    data = read_json_file('data/music_data.json')
+    data = Helpers.read_json_file('data/music_data.json')
     params = {
         'comments': Comment.query.all(),
         'latest_sheets': MusicSheet.get_latest(),

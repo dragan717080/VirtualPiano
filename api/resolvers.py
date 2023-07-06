@@ -6,6 +6,7 @@ class Query(graphene.ObjectType):
     all_users = graphene.List(UserType)
     user = graphene.Field(UserType, id=graphene.ID())
     all_sheets = graphene.List(MusicSheetType)
+    sheet = graphene.Field(MusicSheetType, id=graphene.ID())
 
     def resolve_all_users(self, info):
         return User.get_all()

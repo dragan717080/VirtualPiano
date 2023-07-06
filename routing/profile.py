@@ -1,7 +1,7 @@
 from flask import  render_template, request, redirect, Blueprint
 from flask_login import login_required, current_user
 from db_models import User, Avatar, Message
-from helpers import read_json_file, get_inbox_messages
+from helpers import Helpers
 
 profile_pages = Blueprint('profile', __name__, url_prefix = '/')
 
@@ -49,7 +49,7 @@ def profile():
 def inbox():
     params = {
         'loggedinuser': current_user.username,
-        'inbox_messages': get_inbox_messages(current_user.id),
+        'inbox_messages': Helpers.get_inbox_messages(current_user.id),
         'avatar': current_user.avatar.image if current_user.avatar else None,
         'avatar_format': current_user.avatar.image_format if current_user.avatar else None,
         'all_emails': []

@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, request
 from flask_login import current_user
 from flask_cors import cross_origin
-from helpers import read_json_file
+from helpers import Helpers
 from db_models import MusicSheet, User
 
 index_pages = Blueprint('index', __name__, url_prefix='/')
@@ -9,7 +9,7 @@ index_pages = Blueprint('index', __name__, url_prefix='/')
 @index_pages.route('/')
 @cross_origin()
 def index():
-    data = read_json_file('data/keys.json')
+    data = Helpers.read_json_file('data/keys.json')
     keys, keyboard_notes, keyboard_sounds = data['keys'], data['notes'], data['sounds']
     loaded_music_sheet = request.args.get('loaded-sheet')
     if loaded_music_sheet != None:

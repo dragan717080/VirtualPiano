@@ -90,7 +90,7 @@ class User(BaseModel, UserMixin):
             'avatar': user.avatar.image if user.avatar else None,
             'avatar_format': user.avatar.image_format if user.avatar else None
         } for user in User.query.all()]
-        users = [user for user in users if user['sheets'] > 0]
+        users = list(filter(lambda user: user['sheets'] > 0, users))
         if limit is not None: users = users[:limit]
         return sorted(users, key=lambda i: i['sheets'], reverse=True)
 
@@ -108,13 +108,6 @@ class MusicSheet(BaseModel):
     genre = db.Column(db.String(100))
 
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-@staticmethod
-def get_latest(limit=None):
-    sheets = [item.to_dict(item) for item in MusicSheet.get_latest(limit)]
-    for sheet in sheets:
-        sheet['author'] = User.get(id=sheet['author_id']).username
-    return sheets
     
 class Comment(BaseModel):
     __bind_key__ = 'comments'
