@@ -40,3 +40,17 @@ class Helpers(ABC):
         sheets = [item.to_dict(item) for item in MusicSheet.get_latest()]
         return [{**sheet, 'author': User.get(id=sheet['author_id']).username} 
             for sheet in sheets]
+
+    # Get users that have submitted the most music sheets
+    def get_most_active_users(limit = None):
+        return sorted([
+            {
+                'username': user.username,
+                'sheets': len(user.music_sheets),
+                'comments': len(user.comments),
+                'avatar': user.avatar.image if user.avatar else None,
+                'avatar_format': user.avatar.image_format if user.avatar else None
+            }
+            for user in User.query.all()
+            if len(user.music_sheets) > 0
+        ], key=lambda i: i['sheets'], reverse=True)[:limit]

@@ -19,7 +19,7 @@ def index():
         'keyboard_notes': keyboard_notes,
         'keyboard_sounds': keyboard_sounds,
         'keys': keys,
-        'most_active_users': User.get_most_active(),
+        'most_active_users': Helpers.get_most_active_users(),
         'latest_users': User.get_latest(),
         'loaded_sheet': loaded_sheet
     }
