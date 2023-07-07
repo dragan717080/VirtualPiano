@@ -4,7 +4,7 @@ from config.log_config import logging
 from db_models import User
 from helpers import Helpers
 
-admins = Helpers.read_json_file('data/keys.json')
+admins = Helpers.read_json_file('keys')
 
 register_pages = Blueprint('register', __name__, url_prefix = '/')
 

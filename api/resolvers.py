@@ -8,8 +8,9 @@ class Query(graphene.ObjectType):
     user = graphene.Field(UserType, id=graphene.ID())
     all_sheets = graphene.List(MusicSheetType)
     sheet = graphene.Field(MusicSheetType, id=graphene.ID())
-    all_sheets = graphene.List(CommentType)
+    all_comments = graphene.List(CommentType)
     comment = graphene.Field(CommentType, id=graphene.ID())
+    sheets_by_user = graphene.Field(graphene.List(MusicSheetType), id=graphene.ID())
 
     def resolve_all_users(self, info):
         return User.get_all()
@@ -28,5 +29,8 @@ class Query(graphene.ObjectType):
     
     def resolve_comment(self, info, id):
         return Comment.get_by_id(id)
+
+    def resolve_sheets_by_user(self, info, id):
+        return User.get_by_id(id).sheets
 
 schema = graphene.Schema(query=Query)

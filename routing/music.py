@@ -15,7 +15,7 @@ def music_post():
 
 @music_pages.route('/')
 def music():
-    data = Helpers.read_json_file('data/music_data.json')
+    data = Helpers.read_json_file('music_data')
     params = {
         'comments': Comment.query.all(),
         'latest_sheets': MusicSheet.get_latest(),

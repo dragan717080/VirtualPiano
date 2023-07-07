@@ -1,5 +1,4 @@
 import graphene
-from db_models import User, MusicSheet, Comment
 
 class UserType(graphene.ObjectType):
     id = graphene.ID()

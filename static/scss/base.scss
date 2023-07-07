@@ -24,12 +24,11 @@ body {
   min-width: fit-content;
   color: $white;
   margin-inline: 10px;
-  display: flex;
-}
-
-.header-menu__item a {
-  color: $white;
-  text-decoration: none;
+  display: flex; 
+  a {
+    color: $white;
+    text-decoration: none;
+  }
 }
 
 .active,
