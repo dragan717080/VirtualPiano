@@ -2,6 +2,7 @@ import graphene
 from db_models import User, MusicSheet, Comment
 from api.types import UserType, MusicSheetType, CommentType
 from helpers import Helpers
+from api.mutations import Mutation
 
 class Query(graphene.ObjectType):
     all_users = graphene.List(UserType)
@@ -10,7 +11,6 @@ class Query(graphene.ObjectType):
     sheet = graphene.Field(MusicSheetType, id=graphene.ID())
     all_comments = graphene.List(CommentType)
     comment = graphene.Field(CommentType, id=graphene.ID())
-    sheets_by_user = graphene.Field(graphene.List(MusicSheetType), id=graphene.ID())
 
     def resolve_all_users(self, info):
         return User.get_all()
@@ -30,7 +30,4 @@ class Query(graphene.ObjectType):
     def resolve_comment(self, info, id):
         return Comment.get_by_id(id)
 
-    def resolve_sheets_by_user(self, info, id):
-        return User.get_by_id(id).sheets
-
-schema = graphene.Schema(query=Query)
+schema = graphene.Schema(query=Query, mutation = Mutation)

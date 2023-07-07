@@ -1,15 +1,10 @@
 const blackKeys = document.getElementsByClassName('black-key');
 const whiteKeys = document.getElementsByClassName('white-key');
 const distances = [28, 65, 139, 175, 212, 287, 324, 398, 434, 471, 546, 583, 657, 694, 732, 805, 842, 915, 953, 990, 1064, 1101, 1174, 1212, 1249];
-const distancesMediaQuery =[18, 50, 116, 148, 178, 243, 274, 339, 371, 403, 467, 499, 563, 595, 628, 691, 724, 787, 819, 852, 915, 946, 1012, 1045, 1077];
+const distancesMediaQuery =[-9, 17, 66, 91, 114, 167, 192, 241, 266, 291, 341, 366, 416, 441, 467, 517, 541, 593, 617, 642, 690, 717, 767, 791, 816];
 const pianoMenuTopContent = document.getElementsByClassName('piano-menu-top__content')[0];
 const pianoMenuTopContentKeys = document.getElementsByClassName('piano-menu-top__content_keys')[0];
-const MostRecentKeyTop = document.getElementsByClassName('piano-menu-top__content_keys_most_recent_key_top')[0];
-const MostRecentKeyBottom = document.getElementsByClassName('piano-menu-top__content_keys_most_recent_key_bottom')[0];
-const allRecentKeys = document.getElementsByClassName('piano-menu-top__content_keys_all_keys')[0];
 const pianoMenuItem = document.getElementsByClassName('piano-menu-bottom_item');
-const loadedSheetContent = document.getElementById('loaded-sheet__content');
-const loadedSheetAutoplayBtn = document.getElementById('autoplay-loaded-sheet-btn');
 const headerMenuImages = document.getElementsByClassName('menu_item_img');
 const headerMenuTitles = document.getElementsByClassName('piano-menu-bottom_item_title');
 const pianoMenuTop = document.getElementsByClassName('piano-menu-top')[0];
@@ -68,7 +63,7 @@ document.addEventListener('keyup', event => {
 });
 
 function handleMediaQueryChange(x) {
-    const toMove = x.matches ? ['3%', 'calc(94% + 3px)', 62] : ['15%', '1369px', 301];
+    const toMove = x.matches ? ['2%', 'calc(95% + 7px)', 62] : ['15%', '1369px', 301];
     const arr = x.matches ? distancesMediaQuery : distances;
 
     [pianoMenuTop, pianoMenuBottom, pianoStartWrapper].forEach(element =>
@@ -85,5 +80,3 @@ function handleMediaQueryChange(x) {
 const mediaQuery = window.matchMedia('(max-width: 1500px)');
 handleMediaQueryChange(mediaQuery); // Call listener function at run time
 mediaQuery.addEventListener('change', handleMediaQueryChange);
-
-const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
