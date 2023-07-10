@@ -153,20 +153,20 @@
     padding-top: 122px;
 }
 
-.piano__hints {
+#piano__hints {
     @include padding-y(80px);
     @include row;
-}
 
-.piano__hint {
-    width: 162px;
-    margin-inline: 40px;
-    
-    img {
-        @include square(67px);
-        margin-bottom: 18px;
-        border-radius: 50%;
-    }
+    .piano__hint {
+        width: 162px;
+        margin-inline: 40px;
+        
+        img {
+            @include square(67px);
+            margin-bottom: 18px;
+            border-radius: 50%;
+        }
+    }    
 }
 
 .piano-info__wrapper {
@@ -240,13 +240,13 @@
     font-weight: bold;
 }
 
-.piano-quote__wrapper {
+#piano-quote__wrapper {
     margin-bottom: 40px;
     background-color: #fff;
     @include row;
 }
 
-.piano-quote {
+#piano-quote {
     min-width: 37%;
     margin: 40px;
     padding: 14px;
@@ -254,7 +254,7 @@
     border: 8px solid #e6e6e6;
 }
 
-.piano-quote__content {
+#piano-quote__content {
     color: #000;
     margin-bottom: 14px;
     font-style: italic;
@@ -263,7 +263,7 @@
     font-family: PlayfairDisplay;
 }
 
-.piano-quote__author {
+#piano-quote__author {
     line-height: 1.4;
     color: #919191 !important;
     font-size: 14px;
@@ -272,16 +272,15 @@
     margin-bottom: 5px;
 }
 
-.piano-quote__profession {
+#piano-quote__profession {
     color: #919191;
     font-weight: 400;
     text-transform: uppercase;
     font-size: 10px;
 }
 
-.quote {
+#quote {
     width: fit-content;
-    margin-left: calc(43% + 7px);
     padding-inline: 10px;
     transform: translateY(29px);
     background-color: #fff;
@@ -352,19 +351,45 @@
     @include margin-y(40px, 0);
 }
 
-@media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 700px) {
+
     .white-key div {
         width: 23px;
-    }
-
-    .quote {
-        margin-left: calc(42% + 1px);
     }
 }
 
 @media only screen and (min-width: 1500px) {
+
     .piano-menu-top,
     .piano-menu-bottom {
         width: 1369px;
     }
 }
+
+.container {
+    position: relative;
+  }
+  
+  .element {
+    position: absolute;
+    height: 100px;
+  }
+  
+  .element-1 {
+    left: 0;
+    background-color: red;
+    width: 50%;
+  }
+  
+  .element-2 {
+    left: 25%;
+    background-color: blue;
+    height: 40px;
+    z-index: 1;
+  }
+  
+  .element-3 {
+    right: 0;
+    background-color: green;
+    width: 50%;
+  }

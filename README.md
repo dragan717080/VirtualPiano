@@ -32,3 +32,4 @@ The Virtual Piano Application is built using the following technologies:
 - **Jinja2**: A templating engine for rendering dynamic content in HTML pages.
 - **SQLAlchemy**: An ORM (Object-Relational Mapping) library for database interactions.
 - **Sass**: A CSS preprocessor that extends the capabilities of CSS with features like variables, mixins, and nested rules.
+- **GraphQL**: A query language and runtime for APIs that allows efficient and flexible data fetching and manipulation.

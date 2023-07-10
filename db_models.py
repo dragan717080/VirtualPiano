@@ -114,3 +114,9 @@ class Genre(BaseModel):
     name = db.Column(db.String(100), nullable=False, unique=True)
 
     sheets = db.relationship('MusicSheet', backref='genre')
+
+class Quote(BaseModel):
+    __bind_key__ = __tablename__ = 'quotes'
+    content = db.Column(db.String(100), nullable=False)
+    author = db.Column(db.String(100), nullable=False)
+    profession = db.Column(db.String(100), nullable=False)

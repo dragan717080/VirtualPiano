@@ -7,6 +7,7 @@
 
 <head>
     <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel='preconnect' href='https://fonts.googleapis.com'>
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link rel='logoicon.ico' sizes='76x76' href="{{ url_for('static', filename='/images/logoicon.ico') }}">
@@ -25,9 +26,9 @@
             <img src="{{ url_for('static', filename = '/images/virtual-piano-keyboard-logo.png') }}">
         </div>
         {% set menu_items = [
-            { 'title': 'Play Piano', 'href': '/', 'active': True },
-            { 'title': 'Music Sheets', 'href': '/music', 'active': False },
-            { 'title': 'Learn / Teach', 'href': '/learn-teach', 'active': False }
+        { 'title': 'Play Piano', 'href': '/', 'active': True },
+        { 'title': 'Music Sheets', 'href': '/music', 'active': False },
+        { 'title': 'Learn / Teach', 'href': '/learn-teach', 'active': False }
         ] %}
         {% for item in menu_items %}
         <div class="header-menu__item {% if item.active %}active{% endif %}">
@@ -79,89 +80,91 @@
         {% endif %}
     </div>
 
-    {% block body %}
+    <div id="page-content">
+        {% block body %}
 
-    {% endblock %}
+        {% endblock %}
 
-    <div class='footer'>
-        <div class='footer_logo'>
-            <img src="{{ url_for('static', filename = '/images/virtual-piano-keyboard-logo-footer.png') }}">
-        </div>
-        <div class='footer-item' style='margin-left:80px'>
-            <div class='footer-item__title'>
-                Play Online Piano
+        <div class='footer'>
+            <div class='footer_logo'>
+                <img src="{{ url_for('static', filename = '/images/virtual-piano-keyboard-logo-footer.png') }}">
             </div>
-            <div class='footer-item__content'>
-                {% for href, text in {'play': 'Play Piano', 'how': 'How to Play', 'about': 'About Virtual
-                Piano'}.items() %}
-                <div class='footer-item__content__item' id='link_{{href}}'>
-                    <a href='/'>{{ text }}</a>
+            <div class='footer-item' style='margin-left:80px'>
+                <div class='footer-item__title'>
+                    Play Online Piano
                 </div>
-                {% endfor %}
-                <div class='footer-item__content__item'>&nbsp;</div>
-            </div>
-        </div>
-        <div class='footer-item'>
-            <div class='footer-item__title'>
-                Music Sheets
-            </div>
-            <div class='footer-item__content'>
-                <div class='footer-item__content__item' id='find_music-sheet'>
-                    <a href='/music'>Find Music Sheets</a>
+                <div class='footer-item__content'>
+                    {% for href, text in {'play': 'Play Piano', 'how': 'How to Play', 'about': 'About Virtual
+                    Piano'}.items() %}
+                    <div class='footer-item__content__item' id='link_{{href}}'>
+                        <a href='/'>{{ text }}</a>
+                    </div>
+                    {% endfor %}
+                    <div class='footer-item__content__item'>&nbsp;</div>
                 </div>
-                {% for item in ['A-Z of Music Sheets', 'Latest Music Sheets', 'Request / Submit Songs'] %}
-                <div class='footer-item__content__item'>
-                    {{ item }}
-                </div>
-                {% endfor %}
             </div>
-        </div>
-        <div class='footer-item'>
-            <div class='footer-item__title'>
-                Community
-            </div>
-            <div class='footer-item__content'>
-                {% for item in ['Global Community', 'Mobile & Tablet App', 'FAQs'] %}
-                <div class='footer-item__content__item'>
-                    {{ item }}
+            <div class='footer-item'>
+                <div class='footer-item__title'>
+                    Music Sheets
                 </div>
-                {% endfor %}
-                <div class='footer-item__content__socials'>
-                    {% set social_links = [
-                    {'url': 'https://twitter.com/bestpiano', 'image': '/images/twitter-logo.png'},
-                    {'url': 'https://www.youtube.com/user/cmagicspiano', 'image': '/images/youtube-logo.png'},
-                    {'url': 'https://www.facebook.com/VirtualPiano', 'image': '/images/facebook-logo.png'},
-                    {'url': 'https://soundcloud.com/virtual-piano', 'image': '/images/soundcloud-logo.png'}
-                    ] %}
-
-                    {% for link in social_links %}
-                    <a href="{{ link.url }}">
-                        <img class='link_socials' src="{{ url_for('static', filename=link.image) }}">
-                    </a>
+                <div class='footer-item__content'>
+                    <div class='footer-item__content__item' id='find_music-sheet'>
+                        <a href='/music'>Find Music Sheets</a>
+                    </div>
+                    {% for item in ['A-Z of Music Sheets', 'Latest Music Sheets', 'Request / Submit Songs'] %}
+                    <div class='footer-item__content__item'>
+                        {{ item }}
+                    </div>
                     {% endfor %}
                 </div>
             </div>
-        </div>
-        <div class='footer-item' id='footer-item___account'>
-            <div class='footer-item__title'>
-                Account
-            </div>
-            <div class='footer-item__content'>
-                {% for link, icon, content in [('register', 'login-icon-1.jpg', 'Register'), ('login',
-                'login-icon-2.jpg', 'Login')] %}
-                <a href='/{{ link }}'>
+            <div class='footer-item'>
+                <div class='footer-item__title'>
+                    Community
+                </div>
+                <div class='footer-item__content'>
+                    {% for item in ['Global Community', 'Mobile & Tablet App', 'FAQs'] %}
                     <div class='footer-item__content__item'>
-                        <div class='footer-item__register'>
-                            <img src="{{ url_for('static', filename='/images/' ~ icon) }}">
-                            <div class='footer-item__register_content'>
-                                {{ content }}
+                        {{ item }}
+                    </div>
+                    {% endfor %}
+                    <div class='footer-item__content__socials'>
+                        {% set social_links = [
+                        {'url': 'https://twitter.com/bestpiano', 'image': '/images/twitter-logo.png'},
+                        {'url': 'https://www.youtube.com/user/cmagicspiano', 'image': '/images/youtube-logo.png'},
+                        {'url': 'https://www.facebook.com/VirtualPiano', 'image': '/images/facebook-logo.png'},
+                        {'url': 'https://soundcloud.com/virtual-piano', 'image': '/images/soundcloud-logo.png'}
+                        ] %}
+
+                        {% for link in social_links %}
+                        <a href="{{ link.url }}">
+                            <img class='link_socials' src="{{ url_for('static', filename=link.image) }}">
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class='footer-item' id='footer-item___account'>
+                <div class='footer-item__title'>
+                    Account
+                </div>
+                <div class='footer-item__content'>
+                    {% for link, icon, content in [('register', 'login-icon-1.jpg', 'Register'), ('login',
+                    'login-icon-2.jpg', 'Login')] %}
+                    <a href='/{{ link }}'>
+                        <div class='footer-item__content__item'>
+                            <div class='footer-item__register'>
+                                <img src="{{ url_for('static', filename='/images/' ~ icon) }}">
+                                <div class='footer-item__register_content'>
+                                    {{ content }}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                {% endfor %}
-                <div class='footer-item__content__item'>&nbsp;</div>
-                <div class='footer-item__content__item'>&nbsp;</div>
+                    </a>
+                    {% endfor %}
+                    <div class='footer-item__content__item'>&nbsp;</div>
+                    <div class='footer-item__content__item'>&nbsp;</div>
+                </div>
             </div>
         </div>
     </div>

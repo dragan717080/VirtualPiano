@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, Blueprint
 from flask_login import login_required, current_user
 from config.log_config import logging
-from db_models import db, Comment, MusicSheet
+from db_models import db, Comment, MusicSheet, Artist
 from helpers import Helpers
 
 music_pages = Blueprint('music', __name__, template_folder='templates/music/', url_prefix = '/music')
@@ -57,22 +57,23 @@ def sort_genres():
 @music_pages.route('/artists')
 def artists():
     letter = request.args.get('letter')
-    music_artists = get_artists_letter(letter)
+    music_artists = Artist.get_by_letter('name', letter)
     if current_user.is_anonymous:
         return render_template('music/artists.html', letter = letter, music_artists = music_artists)
     return render_template('music/artists.html', loggedinuser = current_user.username, letter=letter,
         music_artists=music_artists)
 
-@music_pages.route('/artists/<string:artist>')
-def artist(artist):
-    music_sheets_by_artist = get_music_sheets_by_artist(artist)
+@music_pages.route('/artists/<int:id>')
+def artist(id):
+    artist = Artist.get_by_id(id)
     if current_user.is_anonymous:
-        return render_template('music/artist.html', artist = artist, music_sheets_by_artist =  music_sheets_by_artist)
-    return render_template('music/artist.html', loggedinuser = current_user.username, artist = artist, music_sheets_by_artist = music_sheets_by_artist)
+        return render_template('music/artist.html', artist = artist)
+    
+    return render_template('music/artist.html', loggedinuser = current_user.username, artist = artist)
 
 @music_pages.route('/sheets')
 def sheets():
-    data = Helpers.read_json_file('data/music_data.json')
+    data = Helpers.read_json_file('music_data')
     letter = request.args.get('letter')
     music_sheets = MusicSheet.get_by_letter('title', letter)
     print(music_sheets)
@@ -86,9 +87,8 @@ def sheets():
 
 @music_pages.route('/sheets/<int:id>')
 def sheet_by_id(id):
-    music_sheet = MusicSheet.query.filter_by(id = id).first()
+    music_sheet = MusicSheet.get_by_id(id)
     if current_user.is_anonymous:
         return render_template('music/sheet.html', music_sheet = music_sheet)
     
     return render_template('music/sheet.html', loggedinuser = current_user.username, music_sheet = music_sheet)
-

@@ -11,11 +11,11 @@
 
 {% block body %}
 
-<div id='sheet'>
+<div class="main-content t-center" id="sheet">
     <div id='sheet-title'>
-        {{ music_sheet.title.split('.')[0] }} <br>
+        {{ music_sheet.title }} <br>
         {% if music_sheet.artist %}
-        by {{ music_sheet.artist }}
+        by <a href='/music/artists/{{ music_sheet.artist.id }}'>{{ music_sheet.artist.name }}</a>
         {% endif %}
     </div>
     <div id='sheet__content'>

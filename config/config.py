@@ -7,7 +7,7 @@ db = SQLAlchemy()
 def set_config(app_dict, env):
 
     BASE_DB = 'sqlite:///database/'
-    tables = ['users', 'avatars', 'music_sheets', 'comments', 'messages', 'genres', 'artists']
+    tables = ['users', 'avatars', 'music_sheets', 'comments', 'messages', 'genres', 'artists', 'quotes']
     #setting app.config
     config_dict = {
         'SECRET_KEY': 'secretkey1',

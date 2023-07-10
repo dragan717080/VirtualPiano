@@ -1,15 +1,13 @@
 @import '../scss/includes';
 
 .register {
-    height: 89vh;
-    min-height: 700px;
     @include row;
     background-color: #fff;
     background-image: linear-gradient(#000, lightgray);
 
     .register__board {
         width: 300px;
-        padding: 30px;
+        padding: 30px 30px 18px 30px;
         background-color: #fff;
 
         #title {
@@ -23,15 +21,6 @@
             height: 19px;
             @include error;
             display: none;
-        }
-
-        #have-account {
-            text-align: center;
-
-            a {
-                color: $darkorange;
-                text-decoration: none;
-            }
         }
 
         .submit-btn {

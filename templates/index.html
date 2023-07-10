@@ -91,33 +91,33 @@
 </div>
 {% endif %}
 
-<div class='piano__hints' id='piano__hints'>
+<div id='piano__hints'>
     <div class='piano__hint'>
         <div class='row'>
-            <img class='piano__hint_image' src="{{ url_for('static', filename = '/images/virtual-piano-hint-1.png') }}">
+            <img src="{{ url_for('static', filename = '/images/virtual-piano-hint-1.png') }}">
         </div>
-        <div class='piano__hint_content'>
+        <p>
             1. <span class='span1'> Select </span> a song in the Virtual Piano <span class='span1'> Search box </span>
             or by browsing the <span class='span1'> Music Sheets. </span>
-        </div>
+        </p>
     </div>
     <div class='piano__hint'>
         <div class='row'>
-            <img class='piano__hint_image' src="{{ url_for('static', filename = '/images/virtual-piano-hint-2.png') }}">
+            <img src="{{ url_for('static', filename = '/images/virtual-piano-hint-2.png') }}">
         </div>
-        <div class='piano__hint_content'>
+        <p>
             2. <span class='span1'> Letters </span> in the music sheets refer to the <span class='span1'> keys </span>
             on your computer keyboard.
-        </div>
+        </p>
     </div>
     <div class='piano__hint'>
         <div class='row'>
-            <img class='piano__hint_image' src="{{ url_for('static', filename = '/images/virtual-piano-hint-3.png') }}">
+            <img src="{{ url_for('static', filename = '/images/virtual-piano-hint-3.png') }}">
         </div>
-        <div class='piano__hint_content'>
+        <p>
             3. Press the <span class='span1'> highlighted keys </span> on your <span class='span1'> computer keyboard
             </span> to play the song.
-        </div>
+        </p>
     </div>
 </div>
 
@@ -175,7 +175,7 @@
                 </div>
             </div>
             <div class='piano-info__content__column'>
-                Those who wish to experience the full range of the platform’s powerful features have the option of 
+                Those who wish to experience the full range of the platform’s powerful features have the option of
                 <span class='span3'> becoming a member. </span> You don’t need to download or install anything. However,
                 <span class='span3'> Virtual Piano offers a Web App </span> for all mobile & tablet devices as an
                 option.
@@ -210,19 +210,15 @@
     </div>
 </div>
 
-<div class='piano-quote__wrapper'>
-    <div class='piano-quote'>
-        <div class='piano-quote__content'>
-            Where words leave off, music begins.
-        </div>
-        <div class='piano-quote__author'>
-            Heinrich Heine
-        </div>
-        <div class='piano-quote__profession'>
-            POET
-        </div>
-        <div class='quote'>
-            QUOTE
+<div id='piano-quote__wrapper'>
+    <div id='piano-quote'>
+        <div id='piano-quote__content'>{{ random_quote['content'] }}</div>
+        <div id='piano-quote__author'>{{ random_quote['author'] }}</div>
+        <div id='piano-quote__profession u'>{{ random_quote['profession'] }}</div>
+        <div class="row">
+            <div id='quote' class='u'>
+                Quote
+            </div>
         </div>
     </div>
 </div>

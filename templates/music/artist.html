@@ -3,27 +3,26 @@
 {% block head %}
 
 <title>Music Sheets By Letter</title>
-<link rel = "stylesheet" href = "{{ url_for('static', filename = '/css/sheets.css') }}">
-<link rel = "stylesheet" href = "{{ url_for('static', filename = '/css/music-sheet.css') }}">
+{% assets 'sheets_css' %}
+<link rel='stylesheet' type='text/css' href="{{ ASSET_URL }}" />
+{% endassets %}
 
 {% endblock %}
 
 {% block body %}
 
-    <div class = "sheets">
-        <div class = "sheets_title">
-            {{ artist }}
-        </div>
-        {% for sheet in music-sheets__by_artist %}
-        <div class = music_sheet_for_genre_title">
-
-            <a class = "sheets_by_artist_links" href = "/music/sheets/{{ sheet.id }}">
-                {{ sheet.title.split(".")[0].split(" - ")[1] }}
-            </a>
-        </div>
-        {% endfor %}
-
+<div class="main-content" id="artist">
+    <div id="name">
+        {{ artist.name }}
     </div>
+    {% for sheet in artist.sheets %}
+    <div id='sheets'>
+        <a href="/music/sheets/{{ sheet.id }}">
+            {{ sheet.title }}
+        </a>
+    </div>
+    {% endfor %}
+
+</div>
 
 {% endblock %}
-
