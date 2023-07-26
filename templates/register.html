@@ -9,56 +9,56 @@
 <title>Register</title>
 
 <script>
-    var all_users = {{ all_users|tojson }}
+    var all_users = {{ all_users| tojson }}
 </script>
 
 {% endblock %}
 
 {% block body %}
 
-<div class = 'register main-content'>
-    <div class = 'register__board'>
+<div class='register main-content'>
+    <div class='register__board'>
         <div id='title'>
             Sign up
         </div>
-        <form action = '/register' method = 'POST' onsubmit = 'return validateRegistration(event)'>
-        <div class = 'input__wrapper'>
-            <img src = "{{ url_for('static', filename = '/images/email-icon.jpg') }}">
-            <input id = 'email' type = 'text' name = 'email' placeholder = 'Email'>
-        </div>
-        <div class = 'input__wrapper'>
-            <img src = "{{ url_for('static', filename = '/images/login-icon.jpg') }}">
-            <input id = 'username' type = 'text' name = 'username' placeholder = 'Username'>
-        </div>
-             <div class = 'input__wrapper'>
-                <img src = "{{ url_for('static', filename = '/images/password-icon.jpg') }}">
-                <input id = 'password1' type = 'password' name = 'password1' placeholder = 'Password'>
-             </div>
-        <div class = 'input__wrapper'>
-            <img src = "{{ url_for('static', filename = '/images/password-icon.jpg') }}">
-            <input id = 'password2' type = 'password' name = 'password2' placeholder = 'Confirm password'>
-        </div>
-        {% set errors = { 
-            'email': "Email doesn't exist", 
+        <form action='/register' method='POST' onsubmit='return validateRegistration(event)'>
+            <div class='input__wrapper'>
+                <img src="{{ url_for('static', filename = '/images/email-icon.jpg') }}">
+                <input id='email' type='text' name='email' placeholder='Email'>
+            </div>
+            <div class='input__wrapper'>
+                <img src="{{ url_for('static', filename = '/images/login-icon.jpg') }}">
+                <input id='username' type='text' name='username' placeholder='Username'>
+            </div>
+            <div class='input__wrapper'>
+                <img src="{{ url_for('static', filename = '/images/password-icon.jpg') }}">
+                <input id='password1' type='password' name='password1' placeholder='Password'>
+            </div>
+            <div class='input__wrapper'>
+                <img src="{{ url_for('static', filename = '/images/password-icon.jpg') }}">
+                <input id='password2' type='password' name='password2' placeholder='Confirm password'>
+            </div>
+            {% set errors = {
+            'email': "Email doesn't exist",
             'username': 'Username is too short',
             'password': 'Password is too short',
             'password-matching': "Passwords don't match",
             'unique-username': 'Username already exists',
             'unique-email': 'Email already exists'
-        } %}
-        {% for k, v in errors.items() %}
-        <div class = 'handlepotentialerrors' id = '{{ k }}-error'>
-            {{ v }}
-        </div>
-        {% endfor %}
-        <div class="t-center">
-            Already have an account? <a href = '/login'>Log in</a>
-        </div>
-        <input type = 'submit' class = 'submit-btn' name = 'submit' value='Submit'>
-</form>
+            } %}
+            {% for k, v in errors.items() %}
+            <div class='handlepotentialerrors' id='{{ k }}-error'>
+                {{ v }}
+            </div>
+            {% endfor %}
+            <div class="t-center">
+                Already have an account? <a href='/login'>Log in</a>
+            </div>
+            <input type='submit' class='submit-btn' name='submit' value='Submit'>
+        </form>
     </div>
 </div>
 
-<script src = "{{ url_for('static', filename = '/js/register.js') }}"></script>
+<script src="{{ url_for('static', filename = '/js/register.js') }}"></script>
 
 {% endblock %}

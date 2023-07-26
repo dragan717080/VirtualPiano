@@ -11,11 +11,11 @@ def login_post():
     username = request.form['username_1']
     password = request.form['password_1']
     check_login = User.get(username=username)
-    if (check_login == None):
-        if (current_user.is_anonymous):
+    if check_login == None:
+        if current_user.is_anonymous:
             return render_template('login.html', handle=1)
     passwords_match = check_login.password == password
-    if (check_login):
+    if check_login:
         if not passwords_match:
             return render_template('login.html', handle=2)
         else:
